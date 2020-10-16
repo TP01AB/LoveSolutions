@@ -3,44 +3,59 @@
     Created on : 14-oct-2020, 12:46:10
     Author     : isra9
 --%>
+<%@page import="java.math.BigInteger"%>
+<%@page import="java.security.MessageDigest"%>
+<%@page import="java.io.Console"%>
 <%@page import="Paq.ConexionEstatica"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-//-----------------------------------BOTÓN REGISTRARSE
-    if (request.getParameter("registrar") != null) {
-        response.sendRedirect("vistas/registro.jsp");
-    }
-    if (request.getParameter("olvidado") != null) {
-        response.sendRedirect("vistas/olvidado.jsp");
-    }
-    //-----------------------------------BOTÓN REGISTRARSE
-    if (request.getParameter("login") != null) {
-        String mail = request.getParameter("correo");
-        String pass = request.getParameter("pass");
-        int rol = ConexionEstatica.Login(mail, pass);
-        if (rol != -1) {
-            System.out.println("localizado y entro correcto");
-            if (rol == 1) {
-                response.sendRedirect("vistas/admin.jsp");
-            } else {
-                response.sendRedirect("vistas/juego.jsp");
-            }
+    ConexionEstatica.nueva();
+    System.out.println("la password");
+    System.out.println(request.getParameter("Password"));
+    //-------------------------LOGIN------------------
+    if (request.getParameter("Login") != null) {
 
+        String mail = request.getParameter("User");
+        String pass = request.getParameter("Password");
+      
+        
+        System.out.println(ConexionEstatica.prueba());
+
+       
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] encBytes = md.digest(pass.getBytes());
+            BigInteger numero = new BigInteger(1, encBytes);
+            String encString = numero.toString(16);
+            while (encString.length() < 32) {
+                encString = "0" + encString;
+
+            }
+            pass = encString;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println(mail);
+
+        System.out.println(pass);
+        ConexionEstatica.nueva();
+        int rol = ConexionEstatica.Login(mail, pass);
+        System.out.println(rol);
+        ConexionEstatica.cerrarBD();
+        System.out.println("tengo el rol");
+        if (rol != -1) {
+            System.out.println("Usuario y contraseÃ±a correctos");//BITACORA 
+            if (rol == 3) {
+                response.sendRedirect("Vistas/Admin.jsp");
+            } else {
+                response.sendRedirect("Vistas/Inicio.jsp");
+            }
+        } else {
+            //MENSAJE DE LOGIN INCORRECTO
+            System.out.println("ERROR , ALGO NO ESTA CORRECTO");
         }
     }
-
-//-----------------------------------BOTÓN ACEPTAR REGISTRO
-    if (request.getParameter("aceptarRegistro") != null) {
-        System.out.println("entro en registro");
-        String correo = request.getParameter("correo");
-        String nombre = request.getParameter("nombre");
-        String pass = request.getParameter("pass");
-        int edad = Integer.parseInt(request.getParameter("edad"));
-        String sexo = request.getParameter("sexo");
-
-        ConexionEstatica.Insertar_Persona(correo, nombre, pass, 0, edad, sexo, 0, 0);
-        response.sendRedirect("index.jsp");
-    }
-
-
+    ConexionEstatica.cerrarBD();
 %>

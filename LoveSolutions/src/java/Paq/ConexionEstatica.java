@@ -1,6 +1,7 @@
 package Paq;
 
 import Auxiliar.Constantes;
+import static Auxiliar.Constantes.rol;
 import java.sql.Date;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -53,21 +54,21 @@ public class ConexionEstatica {
         }
     }
 
-    public static String prueba() {
-        String dni = null;
+    public static boolean ExisteDNI(String DNI) {
+        Boolean ExisteDNI = false;
         try {
-            String sentencia = "SELECT * FROM asig_rol WHERE DNI='06280822M'";
+            String sentencia = "SELECT * FROM " + Constantes.usuarios + " WHERE DNI='" + DNI + "'";
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
             if (ConexionEstatica.Conj_Registros.next()) //Si devuelve true es que existe.
             {
-                dni = Conj_Registros.getString("DNI");
+                ExisteDNI = true;
 
             }
         } catch (SQLException ex) {
             System.out.println("Error en el acceso a la BD.");
         }
 
-        return dni;
+        return ExisteDNI;
     }
 
     public static int ObtenerRol(String DNI) {
@@ -100,7 +101,6 @@ public class ConexionEstatica {
 
                 String sexo = Conj_Registros.getString("Sexo");
                 Date fecha_nacimiento = Conj_Registros.getDate("FechaNac");
-                u = new Usuario();
 
                 System.out.println("Consulta de Login Correcta"); //BITACORA
 
@@ -113,11 +113,10 @@ public class ConexionEstatica {
         return u;
     }
 
-    public static void Insertar_Persona(String correo, String nombre, String pass, int rol, int edad, String sexo, int partidasJugadas, int partidasGanadas) {
+    public static void CrearUsuario(Usuario u, String p) {
         try {
-            // INSERT INTO `personas` (`correo`, `nombre`, `pass`, `rol`, `edad`, `sexo`, `partidasJugadas`, `partidasGanadas`) VALUES ('isra9movil@hotmail.com', 'israel', 'israel', '1', '28', 'Hombre', '10', '9');
 
-            String sentencia = "INSERT INTO " + Constantes.usuarios + " VALUES ('" + correo + "', '" + nombre + "', '" + pass + "', '" + rol + "', '" + edad + "', '" + sexo + "'," + partidasJugadas + "," + partidasGanadas + ")";
+            String sentencia = "INSERT INTO " + Constantes.usuarios + " VALUES ('" + u.getDNI() + "','" + u.getNick() + "','" + u.getEmail() + "','" + p + "','" + u.getSexo() + "',default,default)";
             ConexionEstatica.Sentencia_SQL.executeUpdate(sentencia);
             System.out.println("Insertado correctamente");
         } catch (SQLException ex) {

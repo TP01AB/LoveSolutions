@@ -33,7 +33,7 @@
             <section class="col-m-8 col-l-8 ">
 
 
-                <form class="col-m-5 col-l-2 row" action="./Controlador.jsp" method="POST">
+                <form class="col-m-5 col-l-2 row" action="Controlador.jsp" method="POST">
                     <legend>Inicio de Sesion</legend>
                     <label class="row" for="User">Usuario</label>
                     <input class="row" name="User" type="text">

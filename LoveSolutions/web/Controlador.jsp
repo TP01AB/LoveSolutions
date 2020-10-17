@@ -9,7 +9,7 @@
 <%@page import="Paq.ConexionEstatica"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%
+<% //---------------ABRIMOS CONEXION
     ConexionEstatica.nueva();
     System.out.println("la password");
     System.out.println(request.getParameter("Password"));
@@ -18,11 +18,8 @@
 
         String mail = request.getParameter("User");
         String pass = request.getParameter("Password");
-      
-        
-        System.out.println(ConexionEstatica.prueba());
 
-       
+        System.out.println(ConexionEstatica.prueba());
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] encBytes = md.digest(pass.getBytes());
@@ -36,14 +33,6 @@
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-        System.out.println(mail);
-
-        System.out.println(pass);
-        ConexionEstatica.nueva();
-        int rol = ConexionEstatica.Login(mail, pass);
-        System.out.println(rol);
-        ConexionEstatica.cerrarBD();
         System.out.println("tengo el rol");
         if (rol != -1) {
             System.out.println("Usuario y contraseña correctos");//BITACORA 
@@ -57,5 +46,15 @@
             System.out.println("ERROR , ALGO NO ESTA CORRECTO");
         }
     }
+    //---------------------------REGISTRO-----------------------------
+    
+    //---------------------REDIRECCION A REGISTRO
+    if (request.getParameter("Registrarse")!=null) {
+         response.sendRedirect("Vistas/Registro.jsp");
+    }
+    //---------------------REGISTRO EN BBDD
+    
+
+    //-----------------------CERRAMOS CONEXION
     ConexionEstatica.cerrarBD();
 %>

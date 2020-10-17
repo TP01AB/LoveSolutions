@@ -1,6 +1,7 @@
 package Paq;
 
 import Auxiliar.Constantes;
+import java.sql.Date;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -53,31 +54,32 @@ public class ConexionEstatica {
     }
 
     public static String prueba() {
-        String dni = null ;
+        String dni = null;
         try {
             String sentencia = "SELECT * FROM asig_rol WHERE DNI='06280822M'";
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
             if (ConexionEstatica.Conj_Registros.next()) //Si devuelve true es que existe.
             {
-             dni = Conj_Registros.getString("DNI");
-           
+                dni = Conj_Registros.getString("DNI");
+
             }
         } catch (SQLException ex) {
             System.out.println("Error en el acceso a la BD.");
         }
 
-    return dni;}
+        return dni;
+    }
 
     public static int ObtenerRol(String DNI) {
         int rol = 0;
         try {
             String sentencia = "SELECT * FROM " + Constantes.rol + " WHERE DNI = '" + DNI + "'";
-         
+
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
-           
+
             if (ConexionEstatica.Conj_Registros.next()) //Si devuelve true es que existe.
             {
-             
+
                 rol = ConexionEstatica.Conj_Registros.getInt("ID_R");
             }
         } catch (SQLException ex) {
@@ -86,22 +88,29 @@ public class ConexionEstatica {
         return rol;
     }
 
-    public static int Login(String correo, String pass) {
-        int Rol = -1;
+    public static Usuario Login(String correo, String pass) {
+        Usuario u = null;
         try {
             String sentencia = "SELECT * FROM " + Constantes.usuarios + " WHERE Email = '" + correo + "' AND Pass= '" + pass + "'";
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
             if (ConexionEstatica.Conj_Registros.getString("DNI") != null) //Si devuelve true es que existe.
             {
+                String DNI = Conj_Registros.getString("DNI");
+                String email = Conj_Registros.getString("Email");
+
+                String sexo = Conj_Registros.getString("Sexo");
+                Date fecha_nacimiento = Conj_Registros.getDate("FechaNac");
+                u = new Usuario();
+
                 System.out.println("Consulta de Login Correcta"); //BITACORA
-                Rol = ObtenerRol(ConexionEstatica.Conj_Registros.getString("DNI"));
+
             } else {
                 System.out.println("falla algo");
             }
         } catch (SQLException ex) {
             System.out.println("Error en el acceso a la BD.");
         }
-        return Rol;
+        return u;
     }
 
     public static void Insertar_Persona(String correo, String nombre, String pass, int rol, int edad, String sexo, int partidasJugadas, int partidasGanadas) {

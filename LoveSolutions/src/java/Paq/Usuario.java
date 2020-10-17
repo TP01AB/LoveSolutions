@@ -6,18 +6,19 @@
 package Paq;
 
 import java.sql.Date;
+import java.util.LinkedList;
 
 /**
  *
  * @author isra9
  */
 public class Usuario {
-
+    
     String DNI;
     String email;
-    String pass;
     String sexo;
     Date fecha_nacimiento;
+    LinkedList pref;
 
     public void Usuario() {
     }
@@ -36,14 +37,6 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPass() {
-        return pass;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
     }
 
     public String getSexo() {

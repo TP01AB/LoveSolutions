@@ -29,33 +29,27 @@
  */
 @media screen and (min-width: 600px) {
     .col-m-1 {
-        width: 10%;
+        width: 14%;
     }
     .col-m-2 {
-        width: 20%;
+        width: 26%;
     }
     .col-m-3 {
-        width: 30%;
+        width: 36%;
     }
     .col-m-4 {
-        width: 40%;
+        width: 48%;
     }
     .col-m-5 {
-        width: 50%;
-    }
-    .col-m-6 {
         width: 60%;
     }
+    .col-m-6 {
+        width: 72%;
+    }
     .col-m-7 {
-        width: 70%;
+        width: 84%;
     }
     .col-m-8 {
-        width: 80%;
-    }
-    .col-m-9 {
-        width: 90%;
-    }
-    .col-m-10 {
         width: 100%;
     }
 }
@@ -65,33 +59,27 @@
  */
 @media only screen and (min-width: 800px) {
     .col-l-1 {
-        width: 10%;
+        width: 14%;
     }
     .col-l-2 {
-        width: 20%;
+        width: 26%;
     }
     .col-l-3 {
-        width: 30%;
+        width: 36%;
     }
     .col-l-4 {
-        width: 40%;
+        width: 48%;
     }
     .col-l-5 {
-        width: 50%;
-    }
-    .col-l-6 {
         width: 60%;
     }
+    .col-l-6 {
+        width: 72%;
+    }
     .col-l-7 {
-        width: 70%;
+        width: 84%;
     }
     .col-l-8 {
-        width: 80%;
-    }
-    .col-l-9 {
-        width: 90%;
-    }
-    .col-l-10 {
         width: 100%;
     }
 }
@@ -109,16 +97,24 @@
 }
 
 /************** ESTILOS GENERALES **********************************************/
-#logo{position: absolute;
-z-index: 1}
-#cabecera{
+#logo{
     position: absolute;
-    height: 200px;
-
+    right: 1%;
+    z-index: 1;
+}
+#logo:hover{
+    transition: all 0.5s linear;
+    transform: scale(0.8);
+}
+#cabecera{
+    position: relative;
+    max-height: 360px;
+    display: block;
+    border-style: solid;
 }
 header {
+    float: left;
     background-color: lightblue;
-    padding: 15px;
 }
 section {
     width: 700px;

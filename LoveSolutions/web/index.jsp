@@ -13,12 +13,12 @@
 
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="./Estilos/Estilo1.css">
+        <link rel="stylesheet" type="text/css" href="Estilos/Estilo1.css">
     </head>
+    <body >
+        <header class="row"><a href="index.jsp"><img id="logo" class="col-m-1" src="Img/Logo.png" href="Vistas/Registro.jsp" alt="Love Solutions">
+                <img id="cabecera" class="col-m-10" src="Img/Cabecera.jpeg"></a>
 
-    <body>
-        <header class="row">
-            <img src="./Img/cab.png" alt="Love Solutions">
             <h1>Love Solutions</h1>
         </header>
         <main class="row">
@@ -30,10 +30,10 @@
                 <article id="usuario4"><p>usuario4</p></article>
             </aside>
 
-            <section class="col-m-8 col-l-8 ">
+            <section class="col-m-7 col-l-7 ">
 
 
-                <form class="col-m-5 col-l-2 row" action="Controlador.jsp" method="POST">
+                <form class="col-m-6 col-l-2 row" action="Controlador.jsp" method="POST">
                     <legend>Inicio de Sesion</legend>
                     <label class="row" for="User">Usuario</label>
                     <input class="row" name="User" type="text">

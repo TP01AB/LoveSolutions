@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Inicio
-    Created on : 14-oct-2020, 13:08:03
+    Document   : Ticket
+    Created on : 20-oct-2020, 20:25:05
     Author     : isra9
 --%>
 
@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello USER!</h1>
+        <h1>Hello TICKETS!</h1>
          <form name="form" action="../Controlador.jsp" method="POST">
             <button type="submit" name="Return" class="btn btn-dark w-100">Volver</button>
         </form>

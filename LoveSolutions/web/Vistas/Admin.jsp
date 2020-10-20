@@ -9,9 +9,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+          <link rel="stylesheet" type="text/css" href="./Estilos/Estilo1.css">
         <title>JSP Page</title>
     </head>
     <body>
         <h1>Hello ADMIN!</h1>
+        <form name="form" action="../Controlador.jsp" method="POST">
+            <button type="submit" name="Return" class="btn btn-dark w-100">Volver</button>
+        </form>
     </body>
 </html>

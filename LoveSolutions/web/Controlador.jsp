@@ -17,46 +17,51 @@
     if (request.getParameter("Login") != null) {
         ConexionEstatica.nueva();
         String mail = request.getParameter("User");
-
-        try {
+        String pass = request.getParameter("Password");
+        try {// ENCRIPTACION POR MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] encBytes = md.digest(request.getParameter("Password").getBytes());
+            byte[] encBytes = md.digest(pass.getBytes());
             BigInteger numero = new BigInteger(1, encBytes);
             String encString = numero.toString(16);
             while (encString.length() < 32) {
                 encString = "0" + encString;
 
             }
-
+            pass = encString;
         } catch (Exception e) {
             throw new RuntimeException(e);
+
         }
-        System.out.println("tengo el rol");
-        /*if (rol != -1) {
-            System.out.println("Usuario y contraseña correctos");//BITACORA 
-            if (rol == 3) {
+        Usuario u1;
+        u1 = ConexionEstatica.Login(mail, pass);
+
+        if (ConexionEstatica.UsuarioHabilitado(u1.getDNI())) {
+            u1.setRol(ConexionEstatica.ObtenerRol(u1.getDNI()));
+            if (u1.getRol() == 3) {
                 response.sendRedirect("Vistas/Admin.jsp");
-            } else {
+            } else if (u1.getRol() == 0) {
                 response.sendRedirect("Vistas/Inicio.jsp");
             }
         } else {
-            //MENSAJE DE LOGIN INCORRECTO
-            System.out.println("ERROR , ALGO NO ESTA CORRECTO");
-        }*/
+            // Sacar mensaje de error y poner opcion de contactar con admin
+            response.sendRedirect("Vistas/Ticket.jsp");
+        }
+
         ConexionEstatica.cerrarBD();
     }
+
     //---------------------------REGISTRO-----------------------------
     //----------VOLVER
     if (request.getParameter("Return") != null) {
 
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("./index.jsp");
     }
     //---------------------REGISTRO EN BBDD
     if (request.getParameter("RegistrarseBBDD") != null) {
         ConexionEstatica.nueva();
         if (ConexionEstatica.ExisteDNI(request.getParameter("DNIRegistro"))) {
-            //ESTE DNI EXISTE 
-            System.out.println("USUARIO EXISTE");
+            // sacar porque dni ya existe
+
         } else {
 
             String encString = null;
@@ -89,6 +94,10 @@
     if (request.getParameter("Registrarse") != null) {
         response.sendRedirect("Vistas/Registro.jsp");
     }
-    //-----------------------CERRAMOS CONEXION
+
+//-------------------------OLVIDADO------------------
+    if (request.getParameter("Olvidado") != null) {
+        response.sendRedirect("Vistas/Olvidado.jsp");
+    }
 
 %>

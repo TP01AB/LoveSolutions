@@ -54,6 +54,21 @@ public class ConexionEstatica {
         }
     }
 
+    public static boolean UsuarioHabilitado(String DNI) {
+        boolean EstaHabilitado = false;
+        try {
+            String sentencia = "SELECT * FROM " + Constantes.usuarios + " WHERE DNI='" + DNI + "' AND UsuHabilitado='1'";
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            if (ConexionEstatica.Conj_Registros.next()) {
+                EstaHabilitado = true;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error en el acceso a la BD.");
+        }
+
+        return EstaHabilitado;
+    }
+
     public static boolean ExisteDNI(String DNI) {
         Boolean ExisteDNI = false;
         try {
@@ -94,14 +109,14 @@ public class ConexionEstatica {
         try {
             String sentencia = "SELECT * FROM " + Constantes.usuarios + " WHERE Email = '" + correo + "' AND Pass= '" + pass + "'";
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
-            if (ConexionEstatica.Conj_Registros.getString("DNI") != null) //Si devuelve true es que existe.
+            if (ConexionEstatica.Conj_Registros.next()) //Si devuelve true es que existe.
             {
                 String DNI = Conj_Registros.getString("DNI");
                 String email = Conj_Registros.getString("Email");
-
+                String nick = Conj_Registros.getString("nick");
                 String sexo = Conj_Registros.getString("Sexo");
-                Date fecha_nacimiento = Conj_Registros.getDate("FechaNac");
-
+                Date fechaNacimiento = Conj_Registros.getDate("FechaNac");
+                u = new Usuario(DNI, nick, email, sexo, fechaNacimiento);
                 System.out.println("Consulta de Login Correcta"); //BITACORA
 
             } else {

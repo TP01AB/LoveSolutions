@@ -18,13 +18,32 @@ public class Usuario {
     String email;
     String sexo;
     Date fecha_nacimiento;
+    int rol;
     LinkedList pref;
-
+//CONSTRUCTOR REGISTRO
     public Usuario(String DNI, String nick, String email, String sexo) {
         this.DNI = DNI;
         this.nick = nick;
         this.email = email;
         this.sexo = sexo;
+    }
+//CONSTRUCTOR LOGIN
+
+    public Usuario(String DNI, String nick, String email, String sexo, Date fecha_nacimiento) {
+        this.DNI = DNI;
+        this.nick = nick;
+        this.email = email;
+        this.sexo = sexo;
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
+    
+
+    public int getRol() {
+        return rol;
+    }
+
+    public void setRol(int rol) {
+        this.rol = rol;
     }
 
     public String getNick() {

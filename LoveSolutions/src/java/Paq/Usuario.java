@@ -6,21 +6,65 @@
 package Paq;
 
 import java.sql.Date;
+import java.util.LinkedList;
 
 /**
  *
  * @author isra9
  */
 public class Usuario {
-
     String DNI;
+    String nick;
     String email;
-    String pass;
     String sexo;
     Date fecha_nacimiento;
-
-    public void Usuario() {
+    int rol;
+    LinkedList pref;
+//CONSTRUCTOR REGISTRO
+    public Usuario(String DNI, String nick, String email, String sexo) {
+        this.DNI = DNI;
+        this.nick = nick;
+        this.email = email;
+        this.sexo = sexo;
     }
+//CONSTRUCTOR LOGIN
+
+    public Usuario(String DNI, String nick, String email, String sexo, Date fecha_nacimiento) {
+        this.DNI = DNI;
+        this.nick = nick;
+        this.email = email;
+        this.sexo = sexo;
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
+    
+
+    public int getRol() {
+        return rol;
+    }
+
+    public void setRol(int rol) {
+        this.rol = rol;
+    }
+
+    public String getNick() {
+        return nick;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public LinkedList getPref() {
+        return pref;
+    }
+
+    public void setPref(LinkedList pref) {
+        this.pref = pref;
+    }
+
+   
+
+  
 
     public String getDNI() {
         return DNI;
@@ -38,14 +82,6 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getPass() {
-        return pass;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
-
     public String getSexo() {
         return sexo;
     }
@@ -60,6 +96,11 @@ public class Usuario {
 
     public void setFecha_nacimiento(Date fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "DNI=" + DNI + ", nick=" + nick + ", email=" + email + ", sexo=" + sexo + '}';
     }
 
 }

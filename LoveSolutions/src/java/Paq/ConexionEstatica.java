@@ -1,6 +1,8 @@
 package Paq;
 
 import Auxiliar.Constantes;
+import static Auxiliar.Constantes.rol;
+import java.sql.Date;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -52,32 +54,48 @@ public class ConexionEstatica {
         }
     }
 
-    public static String prueba() {
-        String dni = null ;
+    public static boolean UsuarioHabilitado(String DNI) {
+        boolean EstaHabilitado = false;
         try {
-            String sentencia = "SELECT * FROM asig_rol WHERE DNI='06280822M'";
+            String sentencia = "SELECT * FROM " + Constantes.usuarios + " WHERE DNI='" + DNI + "' AND UsuHabilitado='1'";
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
-            if (ConexionEstatica.Conj_Registros.next()) //Si devuelve true es que existe.
-            {
-             dni = Conj_Registros.getString("DNI");
-           
+            if (ConexionEstatica.Conj_Registros.next()) {
+                EstaHabilitado = true;
             }
         } catch (SQLException ex) {
             System.out.println("Error en el acceso a la BD.");
         }
 
-    return dni;}
+        return EstaHabilitado;
+    }
+
+    public static boolean ExisteDNI(String DNI) {
+        Boolean ExisteDNI = false;
+        try {
+            String sentencia = "SELECT * FROM " + Constantes.usuarios + " WHERE DNI='" + DNI + "'";
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            if (ConexionEstatica.Conj_Registros.next()) //Si devuelve true es que existe.
+            {
+                ExisteDNI = true;
+
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error en el acceso a la BD.");
+        }
+
+        return ExisteDNI;
+    }
 
     public static int ObtenerRol(String DNI) {
         int rol = 0;
         try {
             String sentencia = "SELECT * FROM " + Constantes.rol + " WHERE DNI = '" + DNI + "'";
-         
+
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
-           
+
             if (ConexionEstatica.Conj_Registros.next()) //Si devuelve true es que existe.
             {
-             
+
                 rol = ConexionEstatica.Conj_Registros.getInt("ID_R");
             }
         } catch (SQLException ex) {
@@ -86,29 +104,34 @@ public class ConexionEstatica {
         return rol;
     }
 
-    public static int Login(String correo, String pass) {
-        int Rol = -1;
+    public static Usuario Login(String correo, String pass) {
+        Usuario u = null;
         try {
             String sentencia = "SELECT * FROM " + Constantes.usuarios + " WHERE Email = '" + correo + "' AND Pass= '" + pass + "'";
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
-            if (ConexionEstatica.Conj_Registros.getString("DNI") != null) //Si devuelve true es que existe.
+            if (ConexionEstatica.Conj_Registros.next()) //Si devuelve true es que existe.
             {
+                String DNI = Conj_Registros.getString("DNI");
+                String email = Conj_Registros.getString("Email");
+                String nick = Conj_Registros.getString("nick");
+                String sexo = Conj_Registros.getString("Sexo");
+                Date fechaNacimiento = Conj_Registros.getDate("FechaNac");
+                u = new Usuario(DNI, nick, email, sexo, fechaNacimiento);
                 System.out.println("Consulta de Login Correcta"); //BITACORA
-                Rol = ObtenerRol(ConexionEstatica.Conj_Registros.getString("DNI"));
+
             } else {
                 System.out.println("falla algo");
             }
         } catch (SQLException ex) {
             System.out.println("Error en el acceso a la BD.");
         }
-        return Rol;
+        return u;
     }
 
-    public static void Insertar_Persona(String correo, String nombre, String pass, int rol, int edad, String sexo, int partidasJugadas, int partidasGanadas) {
+    public static void CrearUsuario(Usuario u, String p) {
         try {
-            // INSERT INTO `personas` (`correo`, `nombre`, `pass`, `rol`, `edad`, `sexo`, `partidasJugadas`, `partidasGanadas`) VALUES ('isra9movil@hotmail.com', 'israel', 'israel', '1', '28', 'Hombre', '10', '9');
 
-            String sentencia = "INSERT INTO " + Constantes.usuarios + " VALUES ('" + correo + "', '" + nombre + "', '" + pass + "', '" + rol + "', '" + edad + "', '" + sexo + "'," + partidasJugadas + "," + partidasGanadas + ")";
+            String sentencia = "INSERT INTO " + Constantes.usuarios + " VALUES ('" + u.getDNI() + "','" + u.getNick() + "','" + u.getEmail() + "','" + p + "','" + u.getSexo() + "',default,default)";
             ConexionEstatica.Sentencia_SQL.executeUpdate(sentencia);
             System.out.println("Insertado correctamente");
         } catch (SQLException ex) {

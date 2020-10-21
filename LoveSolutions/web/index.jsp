@@ -30,20 +30,7 @@
                 <article id="usuario4"><p>usuario4</p></article>
             </aside>
 
-            <section class="col-m-7 col-l-7 ">
-
-
-                <form class="col-m-6 col-l-2 row" action="Controlador.jsp" method="POST">
-                    <legend>Inicio de Sesion</legend>
-                    <label class="row" for="User">Usuario</label>
-                    <input class="row" name="User" type="text">
-                    <label class="row" for="Password">Contraseña</label>
-                    <input class="row" name="Password"  type="password" >
-                    <input class="row" name="Login" type="submit" value="Login">
-                    <input type="checkbox" value="Recordarme"><label>Recordarme</label>
-                    <input  class="row" name="Registrarse" type="submit" value="Registrarse">
-                    <input class="row"  name="Olvidado" type="submit" value="Olvide la Contraseña">
-                </form>
+            
 
             <section class=" col-l-4 col-m-4">
                 <form class="row " action="Controlador.jsp" method="POST">

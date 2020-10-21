@@ -45,8 +45,29 @@
                     <input class="row"  name="Olvidado" type="submit" value="Olvide la Contraseña">
                 </form>
 
+            <section class=" col-l-4 col-m-4">
+                <form class="row " action="Controlador.jsp" method="POST">
+                    <legend class="col-l-8 col-m-8" name="FormCabecera">Inicio de Sesion</legend>
+                    <hr>
+                    <label class="col-l-8 col-m-8" for="User">E-mail</label>
+                    <input class="col-l-8 col-m-8 campo" name="User" type="text" autofocus="" >
 
+                    <label class="col-l-8 col-m-8" for="Password">Contraseña</label>
+                    <input  class="col-l-8 col-m-8 campo" name="Password"  type="password" >
+                    
+                    <div class="col-l-8 col-m-8">
+                    <input  class="boton" name="Login" type="submit" value="Login">
+                    </div>
+                    
+                    <div class="col-l-8 col-m-8">
+                    <input   class="boton left" id="Registrarse" name="Registrarse" type="submit" value="Registrarse">
+                    <input  class="boton rigth" id="Olvidado" name="Olvidado" type="submit" value="Olvide la Contraseña">
+                    </div>
+                </form>
             </section>
+
+
+
         </main>
         <footer>
             Israel molina pulpon

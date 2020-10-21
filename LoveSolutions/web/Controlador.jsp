@@ -119,6 +119,12 @@
         response.sendRedirect("./index.jsp");
 
     }
+//----------------------------CHAT---------------------
+    if (request.getParameter("iniciarChat") != null) {
+        ConexionEstatica.nueva();
 
+        ConexionEstatica.cerrarBD();
+        response.sendRedirect("./Chat.jsp");
+    }
 
 %>

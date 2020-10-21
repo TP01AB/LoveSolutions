@@ -1,9 +1,4 @@
 /******* ESTILOS PARA LA REJILLA ********************/
-
-/* ::after introduce un elemento depues de cualquier elemento de clase .row
- * este elemento lo que hace es evitar que cualquier otro elemento float se
- * introduzca en la row declarada
- */
 .row::after {
     content: "";
     clear: both;
@@ -11,22 +6,11 @@
 }
 
 
-/* Mi rejilla va a estar formado por 10 columnas de ancho proporcional
- * Cada linea se divide en 10 trozos. El espacio ocupado por cada elemento
- * viene determinado por su clase .col-
- */
-
-/* Definimos diferentes compartamientos en función del tamaño de la pantalla 
- * La siguiente clase se aplicará de manera general, pero solo tendrá efecto 
- * para pantallas de menos de 600px, por las definiciones subsiguientes
- */
 [class*="col-"] {
     width: 100%;
 }
 
-/* Las siguientes clases solo se tienen en cuenta si el ancho de pantalla es
- * como minimo 600px
- */
+
 @media screen and (min-width: 600px) {
     .col-m-1 {
         width: 14%;
@@ -54,9 +38,6 @@
     }
 }
 
-/* Las siguientes clases solo se tienen en cuenta si el ancho de pantalla es
- * como minimo 800px
- */
 @media only screen and (min-width: 800px) {
     .col-l-1 {
         width: 14%;
@@ -83,13 +64,6 @@
         width: 100%;
     }
 }
-
-/* Los elementos que tienen el atributo class con una clase que en su nombre comienza
- * por col- les ponemos float left.  
- * Box-sizing hace que los elementos se midan contando borde y padding ( por defecto
- * no entran en la medición ). Esto hace que los porcentajes anteriores funcionen
- * a la perfección.
- */
 [class*="col-"] {
     float: left;
     box-sizing: border-box;
@@ -108,7 +82,7 @@
 }
 #cabecera{
     position: relative;
-    max-height: 360px;
+    max-height: 300px;
     display: block;
     border-style: solid;
 }
@@ -116,51 +90,44 @@ header {
     float: left;
     background-color: lightblue;
 }
-section {
-    width: 700px;
-    position: absolute;
-    border: 1px solid #990000;
-    left: 200px;
-    float: right;
-    margin: auto;
-    padding-bottom: 5px;
+
+h1 {
+    text-shadow: 5px 5px 8px black;
+    color: white;
+    text-align: center;
+    position:relative;
+}
+body{
+    background-color: gray;
+}
+legend{
+    text-height: 5px;
+    text-shadow: 5px 5px 8px black;
+    color: white;
+    text-align: center;
+
 }
 
-legend {
-    font-weight: bold;
-    font-size: 12px;
-}
-
-form label {
-    width: 200px;
-    float: left;
-    text-align: left;
-}
 form input [type="submit"] {
+
     padding: 6px;
     color: #ffffff;
     background-color: #990000;
     border: 1px solid #000000;
     margin: 4px;
 }
-form input[type="text"] [type="password"] {
-    border: 1px solid #cccccc;
-}
 
-h1 {
-    text-shadow: 5px 5px 8px black;
-    color: white;
+
+section {
+    height: 50%;
+    border: 3px solid blue;
+    margin: auto;
+    padding-bottom: 5px;
     text-align: center;
 }
-
 aside {
     background-color: lightslategray;
-}
-
-ul {
-    margin-top: 10px;
-    list-style: none;
-    background-color: lightgreen;
+    text-align: center;
 }
 
 footer {
@@ -169,7 +136,22 @@ footer {
     background-color: bisque;
     text-align: center;
 }
-
+.campo{
+    max-width:40%;
+    border: 50px;
+    border: 1px solid #cccccc;
+    
+}
+.boton{
+    font-size:15px;
+    font-family:Verdana,Helvetica;
+    font-weight:bold;
+    color:white;
+    background:#638cb5;
+    border:2px;
+    width:150px;
+    height:20px;
+}
 .tarjeta {
     border-style: solid;
     border-radius: 5px;

@@ -13,4 +13,5 @@ public class Constantes {
     public static String usuario = "isra9shadow";
     public static String password = "Chubaca2020";
     static String ficheroBitacora = "bitacora.txt";
+    public static String mensajes="mensajes";
 }

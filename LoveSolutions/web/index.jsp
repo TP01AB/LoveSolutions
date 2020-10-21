@@ -22,6 +22,7 @@
                 <img id="cabecera" class="col-l-8 col-m-8" src="Img/Cabecera.jpg">
                 <h1>Love Solutions</h1>
             </a>
+
         </header>
         <main class="row col-l-8 col-m-8">
 
@@ -44,14 +45,14 @@
 
                     <label class="col-l-8 col-m-8" for="Password">Contraseña</label>
                     <input  class="col-l-8 col-m-8 campo" name="Password"  type="password" >
-                    
+
                     <div class="col-l-8 col-m-8">
-                    <input  class="boton" name="Login" type="submit" value="Login">
+                        <input  class="boton" name="Login" type="submit" value="Login">
                     </div>
-                    
+
                     <div class="col-l-8 col-m-8">
-                    <input   class="boton left" id="Registrarse" name="Registrarse" type="submit" value="Registrarse">
-                    <input  class="boton rigth" id="Olvidado" name="Olvidado" type="submit" value="Olvide la Contraseña">
+                        <input   class="boton left" id="Registrarse" name="Registrarse" type="submit" value="Registrarse">
+                        <input  class="boton rigth" id="Olvidado" name="Olvidado" type="submit" value="Olvide la Contraseña">
                     </div>
                 </form>
             </section>
@@ -60,7 +61,7 @@
 
         </main>
         <footer class="row col-l-8 col-m-8">
-            Israel molina pulpon
+            <a href="Vistas/Chat.jsp" > Israel molina pulpon</a>
         </footer>
     </body>
 

@@ -68,6 +68,39 @@ public class ConexionEstatica {
 
         return EstaHabilitado;
     }
+    public static Usuario obtenerUsuario(String DNI){
+    Usuario u2 = null;
+        try {
+            String sentencia = "SELECT * FROM " + Constantes.usuarios + " WHERE DNI = '" + DNI + "'";
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            if (ConexionEstatica.Conj_Registros.next()) //Si devuelve true es que existe.
+            {
+               
+                String email = Conj_Registros.getString("Email");
+                String nick = Conj_Registros.getString("nick");
+                String sexo = Conj_Registros.getString("Sexo");
+                Date fechaNacimiento = Conj_Registros.getDate("FechaNac");
+                u2 = new Usuario(DNI, nick, email, sexo, fechaNacimiento);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error en el login a la BD.");
+        }
+        return u2;
+    }
+    public static boolean insertarMensaje(Mensaje m) {
+        boolean estaEnviado = false;
+        try {
+            String sentencia = "INSERT INTO " + Constantes.mensajes + " (`Emisor`, `Receptor`, `Mensaje`) VALUES ('" + m.getEmisor() + "','" + m.getReceptor() + "','" + m.getMensaje() + "')";
+            ConexionEstatica.Sentencia_SQL.executeUpdate(sentencia);
+                estaEnviado = true;
+         
+        } catch (SQLException ex) {
+            System.out.println("Error de insercion de mensaje en la BD.");
+           
+        }
+        return estaEnviado;
+    }
 
     public static boolean ExisteDNI(String DNI) {
         Boolean ExisteDNI = false;
@@ -80,7 +113,7 @@ public class ConexionEstatica {
 
             }
         } catch (SQLException ex) {
-            System.out.println("Error en el acceso a la BD.");
+            System.out.println("Error en la busqueda DNI a la BD.");
         }
 
         return ExisteDNI;
@@ -99,7 +132,7 @@ public class ConexionEstatica {
                 rol = ConexionEstatica.Conj_Registros.getInt("ID_R");
             }
         } catch (SQLException ex) {
-            System.out.println("Error en el acceso a la BD.");
+            System.out.println("Error al obtener rol de la BD.");
         }
         return rol;
     }
@@ -117,13 +150,10 @@ public class ConexionEstatica {
                 String sexo = Conj_Registros.getString("Sexo");
                 Date fechaNacimiento = Conj_Registros.getDate("FechaNac");
                 u = new Usuario(DNI, nick, email, sexo, fechaNacimiento);
-                System.out.println("Consulta de Login Correcta"); //BITACORA
 
-            } else {
-                System.out.println("falla algo");
             }
         } catch (SQLException ex) {
-            System.out.println("Error en el acceso a la BD.");
+            System.out.println("Error en el login a la BD.");
         }
         return u;
     }
@@ -135,7 +165,7 @@ public class ConexionEstatica {
             ConexionEstatica.Sentencia_SQL.executeUpdate(sentencia);
             System.out.println("Insertado correctamente");
         } catch (SQLException ex) {
-            System.out.println("Error en el acceso a la BD.");
+            System.out.println("Error en la creacion de usuario en  BD.");
         }
 
     }

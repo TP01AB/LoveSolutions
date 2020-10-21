@@ -9,8 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="./Estilos/Estilo1.css">
-        <title>JSP Page</title>
+        <link rel="stylesheet" type="text/css" href="../Estilos/Estilo1.css">
+        <title>Love Solutions</title>
     </head>
     <body>
         <h1>Hello Olvidado!</h1>

@@ -9,21 +9,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="Estilos/Formulario.css">
+        <link rel="stylesheet" type="text/css" href="../Estilos/Formulario.css">
         <title>Love Solutions</title>
 
     </head>
 
     <body onload="validacion()">
-        <header class="row"><a href="index.jsp"><img id="logo" class="col-m-1" src="Img/Logo.png" href="Vistas/Registro.jsp" alt="Love Solutions">
-                <img id="cabecera" class="col-m-10" src="Img/Cabecera.jpeg"></a>
+        <header class="row">
+            <a href="index.jsp">
+                <img id="logo" class="col-m-1" src="Img/Logo.png" href="Vistas/Registro.jsp" alt="Love Solutions">
+                <img id="cabecera" class="col-m-10" src="Img/Cabecera.jpeg">
+            </a>
 
-            <h1>Love Solutions</h1>
 
 
             <!-- ------------------------- Cuerpo de la página ------------------------- -->
 
-            <section class="d-flex-center min-vh-100 m-3">
+            <section class="">
 
                 <!-- ----------------------------- Formulario ------------------------------ -->
 
@@ -32,7 +34,7 @@
 
                     <div class="m-1">
                         <label for="dni">DNI</label>
-                        <input type="text" class="input" id="DNIRegistro"  placeholder="Introduce tu DNI" required pattern="\d{8}[A-Z]">
+                        <input type="text" class="input " id="DNIRegistro"  placeholder="Introduce tu DNI" required pattern="\d{8}[A-Z]">
                         <small id="DNIError" class="form-text error" aria-live="polite"></small>
                     </div>
                     <hr>
@@ -62,15 +64,15 @@
                     <hr>
 
                     <canvas id="captcha captcha_canvas"></canvas>
-                    
-                    <input type="button" id="refresh" class="captcha_refresh-enable" value="Refresh" onclick="captcha();" />
-           
-                    <input type="text" class="captcha_introducido-enable" id="txtInput"/>
-               
-                    <input id="validar" class="captcha_Comprobar-enable" type="button" value="Check" onclick="validCaptcha('txtInput');"/>
+
+                    <input type="button" id="refresh" class="captcha_refresh-enable boton" value="Refresh" onclick="captcha();" />
+
+                    <input type="text" class="captcha_introducido-enable boton" id="txtInput"/>
+
+                    <input id="validar" class="captcha_Comprobar-enable boton" type="button" value="Check" onclick="validCaptcha('txtInput');"/>
                     <div class="m-1">
-                        <button type="submit" name="RegistrarseBBDD" class="btn btn-dark w-100">Registrarse</button>
-                         <button type="submit" name="Return" class="btn btn-dark w-100">Volver</button>
+                        <button type="submit" name="RegistrarseBBDD" class="boton">Registrarse</button>
+                        <button type="submit" name="Return" class="boton">Volver</button>
                     </div>
 
                 </form>

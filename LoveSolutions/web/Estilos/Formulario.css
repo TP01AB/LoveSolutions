@@ -1,10 +1,8 @@
-/* -------------------------------- Variables ------------------------------- */
 .row::after {
     content: "";
     clear: both;
     display: block;
 }
-
 
 [class*="col-"] {
     width: 100%;
@@ -69,43 +67,89 @@
     box-sizing: border-box;
     padding: 1em;
 }
-/*********************ESTILO CAPTCHA*****************************************/
-.captcha_Comprobar-enable{
-    border-color: black;
-}
-.captcha_Comprobar-disable{
-    display: none;
-}
-.captcha_introducido-enable{
-    border-color: black;
-}
-.captcha_introducido-disable{
-    display: none;
-}
-.captcha_refresh-enable{
-    border-color: black;
-}
-.captcha_refresh-disable{
-    display: none;
-}
-.captcha_canvas{
-    display: none;
 
+/************** ESTILOS GENERALES **********************************************/
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;    
 }
-/************** ESTILOS GENERALES *********************************************
-#logo{position: absolute;
-      z-index: 1}
+
 #cabecera{
+    position: relative;
+    z-index: -1;
+    position: relative;
+    max-height: 260px;
+    min-height: 100px;
+    display: block;
+    vertical-align: top;
+}
+.logo{
+    display: block;
     position: absolute;
-    height: 200px;
-
+    vertical-align: top;
+    z-index: 1;
 }
-*/
+
+.logo:hover{
+    transition: all 0.5s linear;
+    transform: scale(0.8);
+}
+.a_logo{
+    position: absolute;
+    display: block;
+    z-index: 1;
+    color: #fff;
+    font-size: 30px;
+}
+
 header {
-    background-color: lightblue;
-    padding: 15px;
+    display: block;
+    vertical-align: bottom;
+}
+.contenedor{
+
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+h1 {
+    text-shadow: 5px 5px 8px black;
+    color: white;
+    text-align: center;
+    position:relative;
+}
+body{
+    background-color: gray;
+}
+legend{
+    text-height: 15px;
+    text-shadow: 10px 5px 8px black ;
+    color: windowtext;
+    text-align: center;
+
 }
 
+form input [type="submit"] {
+
+    color: #ffffff;
+    background-color: #990000;
+    border: 1px solid #000000;
+}
+
+
+section {
+
+    border: 3px solid blue;
+    margin-left: 10px;
+    text-align: center;
+}
+aside {
+    border: 3px solid blue;
+    background-color: lightslategray;
+    text-align: center;
+}
 
 footer {
     padding: 15px;
@@ -113,160 +157,38 @@ footer {
     background-color: bisque;
     text-align: center;
 }
-
-:root {
-    /* Colores */
-    --color-dark: #434343;
-    --color-medium: #ced4da;
-    --color-light: #f2f2f2;
-    --color-white: #ffffff;
-    --color-red: #f14668;
-    --color-green: #48c774;
-
-    /* Colores alpha */
-    --color-red-a: #f1466831;
-    --color-green-a: #48c7741e;
-
-
-    /* Tamaño fuente */
-    --font-1: 1rem;
-    --font-2: 2rem;
-    --font-3: 3rem;
-    --font-4: 4rem;
-    --font-5: 5rem;
-
-    /* Margen */
-    --m-0: 0;
-    --m-1: 1rem;
-    --m-2: 2rem;
-    --m-3: 3rem;
-    --m-4: 4rem;
-    --m-5: 5rem;
-
-    /* Padding */
-    --p-0: 0;
-    --p-1: 1rem;
-    --p-2: 2rem;
-    --p-3: 3rem;
-    --p-4: 4rem;
-    --p-5: 5rem;
+.campo{
+    margin: auto 0;
+    border: 1px solid #cccccc;
 }
 
-/* ---------------------------------- Reset --------------------------------- */
-
-* {
-    box-sizing: border-box;
-    margin: var(--m-0);
+.boton{
+    font-size:12px;
+    font-family:Verdana,Helvetica;
+    font-weight:bold;
+    color:white;
+    background:#638cb5;
+    max-height: 20px;
+    min-height: 15px;
+    margin: 10px;
+    border-radius: 115px 115px 115px 115px;
+    -moz-border-radius: 114px 115px 115px 115px;
+    -webkit-border-radius: 114px 115px 115px 115px;
+    border: 3px solid #0f3140;
 }
+.boton:hover{
+    box-shadow: 3px 0px 20px buttonhighlight;
 
-/* --------------------------------- Estilos -------------------------------- */
-
-body {
-    font-size: 16px;
-    font-family: sans-serif;
-    color: var(--color-dark);
 }
-
-nav {
-    background-color: var(--color-dark);
-    padding: var(--p-2) var(--p-4);
-    font-size: var(--font-2);
-    color: var(--color-light);
-    text-align: center;
-}
-
-form {
-    width: 75vw;
-    padding: var(--p-3);
-    background-color: var(--color-light);
+.tarjeta {
+    border-style: solid;
     border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
+    border-width: 2px;
+    border-color: white;
+    background-color: lightsteelblue;
+    color: darkblue;
+    text-align: justify;
 }
-
-label {
-    display: inline-block;
-    margin-bottom: .5rem;
-    font-weight: bolder;
-}
-
-.d-flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.min-vh-100 {
-    min-height: 100vh;
-}
-
-.m-1 {
-    margin: var(--m-1);
-}
-
-.m-3 {
-    margin: var(--m-3);
-}
-
-.input {
-    display: block;
-    width: 100%;
-    height: calc(1.5em + .75rem + 2px);
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--color-dark);
-    background-color: var(--color-white);
-    background-clip: padding-box;
-    border: 1px solid var(--color-medium);
-    border-radius: .25rem;
-}
-
-input:invalid:focus {
-    outline: none;
-    border: 2px solid var(--color-red);
-    background-color: rgb(255, 202, 202);
-}
-
-input:valid:focus {
-    outline: none;
-    border: 2px solid var(--color-green);
-    background-color: rgb(214, 253, 214);
-}
-
-small {
-    margin-left: 0.2rem;
-}
-
-.btn {
-    display: inline-block;
-    font-weight: 400;
-    color: var(--color-light);
-    text-align: center;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: transparent;
-    border: 1px solid transparent;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: .25rem;
-    width: 100%;
-    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-}
-
-.btn-dark {
-    color: var(--color-light);
-    background-color: var(--color-dark);
-    border-color: var(--color-dark);
-}
-
 
 /* Este es el diseño para nuestros mensajes de error */
 .error {

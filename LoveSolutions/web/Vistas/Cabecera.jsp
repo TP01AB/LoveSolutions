@@ -13,11 +13,17 @@
         <title>JSP Page</title>
     </head>
     <body >
+        <%
+            String ruta = "";
+            if (!getServletConfig().getServletContext().getRealPath(request.getServletPath()).endsWith("index.jsp")) {
+                ruta = "../";
+            }
+        %>
         <div class="contenedor">
             <header class="row col-l-8 col-m-8 " >
 
-                <img  class="col-l-1 col-m-1 logo" src="Img/Logo.png"  alt="Love Solutions">
-                <img id="cabecera" class="col-l-8 col-m-8" src="Img/Cabecera.jpg">
+                <img  class="col-l-1 col-m-1 logo" src="<%out.print(ruta);%>/Img/Logo.png"  alt="Love Solutions">
+                <img id="cabecera" class="col-l-8 col-m-8" src="<%out.print(ruta);%>/Img/Cabecera.jpg">
 
                 <a href="index.jsp" class="a_logo">Love Solutions</a>
 

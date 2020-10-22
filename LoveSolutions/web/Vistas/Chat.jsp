@@ -12,7 +12,7 @@
         <title>Love Solutions</title>
     </head>
     <body>
-
+      <jsp:include page="./Cabecera.jsp"/>
         <h1>Hello Chat!</h1>
         <form class="row " action="../Controlador.jsp" method="POST">
             

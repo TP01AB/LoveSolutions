@@ -17,6 +17,7 @@
     </head>
     <body >
         <jsp:include page="Vistas/Cabecera.jsp"/>
+  
     </div>
     <main class="row col-l-8 col-m-8">
 
@@ -44,7 +45,6 @@
                 <div class="col-l-2 col-m-1"> </div>
 
                 <input  class="boton col-l-3 col-m-2" name="Login" type="submit" value="Login">
-
 
                 <div class=" col-l-8 col-m-8">
                     <input   class="boton col-l-2 col-m-1" id="Registrarse" name="Registrarse" type="submit" value="Registrarse">

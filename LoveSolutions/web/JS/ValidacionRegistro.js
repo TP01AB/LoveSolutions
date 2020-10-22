@@ -96,8 +96,7 @@ function captcha() {
             }
             break;
     }
-    console.log(code)
-    console.log(result)
+
     creaIMG(code);
 }
 
@@ -119,6 +118,14 @@ function validCaptcha(txtInput) {
         captcha();
         CaptchaMatematico = false;
 
+        document.getElementById("validar").classList.add('captcha_Comprobar-enable');
+        document.getElementById("validar").classList.remove('captcha_Comprobar-disable');
+
+        document.getElementById("txtInput").classList.add('captcha_introducido-enable');
+        document.getElementById("txtInput").classList.remove('captcha_introducido-disable');
+
+        document.getElementById("refresh").classList.add('captcha_refresh-enable');
+        document.getElementById("refresh").classList.remove('captcha_refresh-disable');
     }
 }
 
@@ -176,9 +183,10 @@ const PasswordError = document.getElementById('PasswordError');
 // Esta función se carga con la página y esta pendiente de informar al
 // usuario si hay errores o no mientras interactua con el formulario
 function validacion() {
+    captcha();
     // EventListener DNI
-    DNI.addEventListener('input', function (e) {
-        
+    DNI.addEventListener('blur', function (e) {
+
         // Si es valido eliminamos el error
         if (DNI.validity.valid) {
             DNIError.innerHTML = 'Ok';
@@ -188,7 +196,7 @@ function validacion() {
         }
     });
     // EventListener nombre
-    Nick.addEventListener('input', function (e) {
+    Nick.addEventListener('blur', function (e) {
         // Si es valido eliminamos el error
         if (Nick.validity.valid) {
             NickError.innerHTML = "Ok";
@@ -198,7 +206,7 @@ function validacion() {
         }
     });
     // EventListener email
-    Email.addEventListener('input', function (e) {
+    Email.addEventListener('blur', function (e) {
         // Si es valido eliminamos el error
         if (Email.validity.valid) {
             EmailError.innerHTML = 'Ok';
@@ -208,7 +216,7 @@ function validacion() {
         }
     });
     // EventListener password
-    Password.addEventListener('input', function (e) {
+    Password.addEventListener('blur', function (e) {
         // Si es valido eliminamos el error
         if (Password.validity.valid) {
             PasswordError.innerHTML = 'Ok';
@@ -250,7 +258,9 @@ function mostrarDniError() {
     } else if (DNI.validity.patternMismatch) {
         // Si no sigue el patrón
         DNIError.textContent = 'Introduce un Dni 00011122X';
-    }else if( !ConexionEstatica.ExisteDNI(DNI)){DNIError.textContent = 'DNI EXISTE';}
+    } else if (!ConexionEstatica.ExisteDNI(DNI)) {
+        DNIError.textContent = 'DNI EXISTE';
+    }
     // Establece el estilo apropiado
     DNIError.className = 'error active';
 }

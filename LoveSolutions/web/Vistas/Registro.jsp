@@ -36,7 +36,8 @@
 
                 <label class="col-l-4 col-m-4" for="Password">Contraseña</label>
                 <input type="password" class="campo  col-l-4 col-m-4" id="Password"  placeholder="Introduce tu contraseña" required pattern="/^[a-zA-Z0-9\_\-]{8,15}$/">
-                <small id="PasswordError" class="row form-text error" aria-live="polite"></small>
+                <small id="PasswordError" class=" row form-text error" aria-live="polite"></small>
+                
                 <div class="col-l-3 col-m-3"></div>
                 <canvas class=" col-l-2 col-m-2" id="captcha" onload="captcha()" ></canvas>
                 <div class="col-l-3 col-m-3"></div>

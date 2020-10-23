@@ -23,8 +23,8 @@
    
     <main class="row col-l-8 col-m-8">
 
-        <aside class="col-m-2 col-l-2">
-            <article class="row tarjeta "  id="usuario1"><p>usuario1</p></article>
+        <aside class="col-l-2 col-m-0 ">
+            <article class="row tarjeta  "  id="usuario1"><p>usuario1</p></article>
             <article class="row tarjeta"  id="usuario2"><p>usuario2</p></article>
             <article class="row tarjeta"  id="usuario3"><p>usuario3</p></article>
             <article class="row tarjeta"  id="usuario4"><p>usuario4</p></article>
@@ -38,15 +38,15 @@
                 <legend class="col-l-8 col-m-8" name="FormCabecera">Inicio de Sesion</legend>
                 <hr>
                 <label class="col-l-8 col-m-8" for="User">E-mail</label>
-                <div class="col-l-2 col-m-1"> </div>
-                <input class="col-l-4 col-m-6 campo" name="User" type="text" autofocus="" >
-                <div class="col-l-2 col-m-1"> </div>
+                <div class="col-l-2 col-m-2"> </div>
+                <input class="col-l-4 col-m-4 campo" name="User" type="text" autofocus="" >
+                <div class="col-l-2 col-m-2"> </div>
                 <label class="col-l-8 col-m-8" for="Password">Contraseña</label>
-                <div class="col-l-2 col-m-1"> </div>
-                <input  class="col-l-4 col-m-6 campo" name="Password"  type="password" >
-                <div class="col-l-3 col-m-2"> </div>
+                <div class="col-l-2 col-m-2"> </div>
+                <input  class="col-l-4 col-m-4 campo" name="Password"  type="password" >
+                <div class="col-l-3 col-m-3"> </div>
 
-                <input   class="boton col-l-2 col-m-1"  name="Login" type="submit" value="Login">
+                <input   class="boton col-l-2 col-m-2"  name="Login" type="submit" value="Login">
                 
                 <%
                     int n = ((int) (Math.random() * 10)) + 1;
@@ -56,10 +56,10 @@
                     }
                 %>
                 <div class=" col-l-8 col-m-8">
-                    <div class="col-l-3 col-m-1"></div>
-                    <input   class="boton col-l-2 col-m-1" id="Registrarse" name="Registrarse" type="submit" value="Registrarse">
-                    <div class="col-l-3 col-m-1"></div>
-                    <input   class="boton_olvidar col-l-3 col-m-2"  id="Olvidado" name="Olvidado" type="submit" value="Olvide la Contraseña">
+                    <div class="col-l-3 col-m-3"></div>
+                    <input   class="boton col-l-2 col-m-3" id="Registrarse" name="Registrarse" type="submit" value="Registrarse">
+                    <div class="col-l-3 col-m-3"></div>
+                    <input   class="boton_olvidar col-l-3 col-m-3"  id="Olvidado" name="Olvidado" type="submit" value="Olvide la Contraseña">
                 </div>
             </form>
         </section>

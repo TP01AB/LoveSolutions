@@ -15,56 +15,68 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="Estilos/Estilo1.css">
     </head>
+    
+
     <body >
-        <div class="contenedor">
-            <header class="row col-l-8 col-m-8 " >
+        <jsp:include page="Vistas/Cabecera.jsp"/>
 
-                <img  class="col-l-1 col-m-1 logo" src="Img/Logo.png"  alt="Love Solutions">
-                <img id="cabecera" class="col-l-8 col-m-8" src="Img/Cabecera.jpg">
+   
+    <main class="row col-l-8 col-m-8">
 
-                <a href="index.jsp" class="a_logo">Love Solutions</a>
-
-            </header>
-        </div>
-        <main class="row col-l-8 col-m-8">
-
-            <aside class="col-m-2 col-l-2">
-                <article class="row "  id="usuario1"><p>usuario1</p></article>
-                <article class="row "  id="usuario2"><p>usuario2</p></article>
-                <article class="row "  id="usuario3"><p>usuario3</p></article>
-                <article class="row "  id="usuario4"><p>usuario4</p></article>
-            </aside>
+        <aside class="col-l-2 col-m-0 ">
+            <article class="row tarjeta  "  id="usuario1"><p>usuario1</p></article>
+            <article class="row tarjeta"  id="usuario2"><p>usuario2</p></article>
+            <article class="row tarjeta"  id="usuario3"><p>usuario3</p></article>
+            <article class="row tarjeta"  id="usuario4"><p>usuario4</p></article>
+        </aside>
 
 
 
 
-            <section class=" col-l-4 col-m-4">
-                <form class="row " action="Controlador.jsp" method="POST">
-                    <legend class="col-l-8 col-m-8" name="FormCabecera">Inicio de Sesion</legend>
-                    <hr>
-                    <label class="col-l-8 col-m-8" for="User">E-mail</label>
-                    <input class="col-l-8 col-m-8 campo" name="User" type="text" autofocus="" >
+        <section class=" col-l-4 col-m-4" >
+            <form class="row " action="Controlador.jsp" method="POST">
+                <legend class="col-l-8 col-m-8" name="FormCabecera">Inicio de Sesion</legend>
+                <hr>
+                <label class="col-l-8 col-m-8" for="User">E-mail</label>
+                <div class="col-l-2 col-m-2"> </div>
+                <input class="col-l-4 col-m-4 campo" name="User" type="text" autofocus="" >
+                <div class="col-l-2 col-m-2"> </div>
+                <label class="col-l-8 col-m-8" for="Password">Contraseña</label>
+                <div class="col-l-2 col-m-2"> </div>
+                <input  class="col-l-4 col-m-4 campo" name="Password"  type="password" >
+                <div class="col-l-3 col-m-3"> </div>
+                <%
+                    
+                if(request.getParameter("User")!=null){
+                %>
+                <p id="error_login"></p>
+                <%
+                }
+                %>
+                <input   class="boton col-l-2 col-m-2"  name="Login" type="submit" value="Login">
+                
+                <%
+                    int n = ((int) (Math.random() * 10)) + 1;
+                    if (n < 5 || session.getAttribute("true") != null) {
+                        session.setAttribute("true", true);
+                        out.println("<div name='captcha' clas='g-recaptcha' data-sitekey='6LdGPtoZAAAAAPhXK24N-3XER82ZthFNqSclTLlw'></div>");
+                    }
+                %>
+                <div class="form_bot col-l-8 col-m-8">
+                    <div class="col-l-3 col-m-3"></div>
+                    <input   class="boton col-l-2 col-m-3" id="Registrarse" name="Registrarse" type="submit" value="Registrarse">
+                    <div class="col-l-3 col-m-3"></div>
+                    <input   class="boton_olvidar col-l-3 col-m-3"  id="Olvidado" name="Olvidado" type="submit" value="Olvide la Contraseña">
+                </div>
+            </form>
+        </section>
 
-                    <label class="col-l-8 col-m-8" for="Password">Contraseña</label>
-                    <input  class="col-l-8 col-m-8 campo" name="Password"  type="password" >
-
-                    <div class="col-l-8 col-m-8">
-                        <input  class="boton" name="Login" type="submit" value="Login">
-                    </div>
-
-                    <div class="col-l-8 col-m-8">
-                        <input   class="boton left" id="Registrarse" name="Registrarse" type="submit" value="Registrarse">
-                        <input  class="boton rigth" id="Olvidado" name="Olvidado" type="submit" value="Olvide la Contraseña">
-                    </div>
-                </form>
-            </section>
 
 
-
-        </main>
-        <footer class="row col-l-8 col-m-8">
-            <a href="Vistas/Chat.jsp" > Israel molina pulpon</a>
-        </footer>
-    </body>
+    </main>
+    <footer class="row col-l-8 col-m-8">
+        <a href="Vistas/Chat.jsp" > Israel molina pulpon</a>
+    </footer>
+</body>
 
 </html>

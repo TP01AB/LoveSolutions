@@ -1,61 +1,4 @@
-/*
- const formulario = document.getElementById('formReg');
- const inputs = document.querySelectorAll('#formReg input');
- 
- 
- const expresiones = {
- DNI: /d{2}\.\d{3}\.\d{3}-[A-Z]/,
- Nick: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
- Password: /^.{8,12}$/, // 8 a 12 digitos.
- Email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
- 
- }
- const campos = {
- DNI: false,
- Nick: false,
- Password: false,
- Email: false,
- }
- const validarFormulario = (e) => {
- switch (e.target.name) {
- case "NickRegistro":
- validarCampo(expresiones.Nick, e.target, 'NickrRegistro');
- break;
- case "DNIRegistro":
- validarCampo(expresiones.DNI, e.target, 'DNIRegistro');
- break;
- case "EmailRegistro":
- validarCampo(expresiones.Email, e.target, 'EmailRegistro');
- break;
- 
- case "PasswordRegistro":
- validarCampo(expresiones.Password, e.target, 'PasswordRegistro');
- validarPassword2();
- break;
- case "PasswordRegistro2":
- validarPassword2();
- break;
- 
- }
- }
- const validarCampo = (expresion, input, campo) => {
- if (expresion.test(input.value)) {
- document.getElementById(`${campo}`).classList.remove('formulario__grupo-incorrecto');
- document.getElementById(`${campo}`).classList.add('formulario__grupo-correcto');
- document.querySelector(`${campo} i`).classList.add('fa-check-circle');
- document.querySelector(`${campo} i`).classList.remove('fa-times-circle');
- campos[campo] = true;
- } else {
- document.getElementById(`${campo}`).classList.add('formulario__grupo-incorrecto');
- document.getElementById(`${campo}`).classList.remove('formulario__grupo-correcto');
- document.querySelector(`${campo} i`).classList.add('fa-times-circle');
- document.querySelector(`${campo} i`).classList.remove('fa-check-circle');
- mostrarError(campo);
- campos[campo] = false;
- }
- }*/
 
-/* global ConexionEstatica */
 
 var code;
 var CaptchaMatematico = false;
@@ -96,30 +39,32 @@ function captcha() {
             }
             break;
     }
-    console.log(code)
-    console.log(result)
+
     creaIMG(code);
 }
 
 function validCaptcha(txtInput) {
 
     if (result == document.getElementById(txtInput).value) {
-        CaptchaMatematico = true
+    CaptchaMatematico = true
 
-        document.getElementById("validar").classList.remove('captcha_Comprobar-enable');
-        document.getElementById("validar").classList.add('captcha_Comprobar-disable');
-
-        document.getElementById("txtInput").classList.remove('captcha_introducido-enable');
-        document.getElementById("txtInput").classList.add('captcha_introducido-disable');
-
-        document.getElementById("refresh").classList.remove('captcha_refresh-enable');
-        document.getElementById("refresh").classList.add('captcha_refresh-disable');
-
+            document.getElementById("validar").classList.remove('captcha_Comprobar-enable');
+            document.getElementById("validar").classList.add('captcha_Comprobar-disable');
+            document.getElementById("txtInput").classList.remove('captcha_introducido-enable');
+            document.getElementById("txtInput").classList.add('captcha_introducido-disable');
+            document.getElementById("refresh").classList.remove('captcha_refresh-enable');
+            document.getElementById("refresh").classList.add('captcha_refresh-disable');
     } else {
-        captcha();
-        CaptchaMatematico = false;
-
+    captcha();
+            CaptchaMatematico = false;
+            document.getElementById("validar").classList.add('captcha_Comprobar-enable');
+            document.getElementById("validar").classList.remove('captcha_Comprobar-disable');
+            document.getElementById("txtInput").classList.add('captcha_introducido-enable');
+            document.getElementById("txtInput").classList.remove('captcha_introducido-disable');
+            document.getElementById("refresh").classList.add('captcha_refresh-enable');
+            document.getElementById("refresh").classList.remove('captcha_refresh-disable');
     }
+    document.cookie = "CaptchaMatematico=" + CaptchaMatematico;
 }
 
 function creaIMG(texto) {
@@ -169,6 +114,7 @@ const NickError = document.getElementById('NickError');
 // Correo
 const Email = document.getElementById('EmailRegistro');
 const EmailError = document.getElementById('EmailError');
+
 // Password
 const Password = document.getElementById('PasswordRegistro');
 const PasswordError = document.getElementById('PasswordError');
@@ -176,9 +122,10 @@ const PasswordError = document.getElementById('PasswordError');
 // Esta función se carga con la página y esta pendiente de informar al
 // usuario si hay errores o no mientras interactua con el formulario
 function validacion() {
+    captcha();
     // EventListener DNI
-    DNI.addEventListener('input', function (e) {
-        
+    DNI.addEventListener('blur', function (e) {
+
         // Si es valido eliminamos el error
         if (DNI.validity.valid) {
             DNIError.innerHTML = 'Ok';
@@ -188,7 +135,7 @@ function validacion() {
         }
     });
     // EventListener nombre
-    Nick.addEventListener('input', function (e) {
+    Nick.addEventListener('blur', function (e) {
         // Si es valido eliminamos el error
         if (Nick.validity.valid) {
             NickError.innerHTML = "Ok";
@@ -198,7 +145,7 @@ function validacion() {
         }
     });
     // EventListener email
-    Email.addEventListener('input', function (e) {
+    Email.addEventListener('blur', function (e) {
         // Si es valido eliminamos el error
         if (Email.validity.valid) {
             EmailError.innerHTML = 'Ok';
@@ -208,7 +155,7 @@ function validacion() {
         }
     });
     // EventListener password
-    Password.addEventListener('input', function (e) {
+    Password.addEventListener('blur', function (e) {
         // Si es valido eliminamos el error
         if (Password.validity.valid) {
             PasswordError.innerHTML = 'Ok';
@@ -236,12 +183,27 @@ function validacion() {
             mostrarPasswordError();
             event.preventDefault();
         }
-        if (CaptchaMatematico) {
+        if (!document.cookie) {
             event.preventDefault();
+            
         }
     });
 }
-
+function cargarCookies() {
+    var nom_cookie, valor_cookie;
+    var temp;
+    var array_cookies = document.cookie.split('; ');
+    document.cookie = "idioma=ingles";
+    for (var i = 0; i < array_cookies.length; i++) {
+        temp = array_cookies[i].split('=');
+        nom_cookie = temp[0];
+        valor_cookie = temp[1];
+        if (nom_cookie == "CaptchaMatematico") {
+            CaptchaMatematico = valor_cookie;
+            p.innerHTML = "captcha completado correctamente";
+        }
+    }
+}
 // Función para mostrar los errores del DNI
 function mostrarDniError() {
     if (DNI.validity.valueMissing) {
@@ -250,7 +212,9 @@ function mostrarDniError() {
     } else if (DNI.validity.patternMismatch) {
         // Si no sigue el patrón
         DNIError.textContent = 'Introduce un Dni 00011122X';
-    }else if( !ConexionEstatica.ExisteDNI(DNI)){DNIError.textContent = 'DNI EXISTE';}
+    } else if (!ConexionEstatica.ExisteDNI(DNI)) {
+        DNIError.textContent = 'DNI EXISTE';
+    }
     // Establece el estilo apropiado
     DNIError.className = 'error active';
 }

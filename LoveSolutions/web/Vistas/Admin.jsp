@@ -13,9 +13,13 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <jsp:include page="./Cabecera.jsp"/>
         <h1>Hello ADMIN!</h1>
         <form name="form" action="../Controlador.jsp" method="POST">
-            <button type="submit" name="Return" class="btn btn-dark w-100">Volver</button>
+            <input class="boton" type="submit" name="inicio" id="inicio" value="Inicio como usuario">
+            <input class="boton" type="submit" name="iniciarChat" id="iniciarChat" value="CHAT">
+            
+            <button class="boton" type="submit" name="Return">Volver</button>
         </form>
     </body>
 </html>

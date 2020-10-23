@@ -10,7 +10,10 @@
 }
 
 
-@media screen and (min-width: 600px) {
+@media screen and (max-width: 799px) {
+    .col-m-0{
+        display: none;
+    }
     .col-m-1 {
         width: 14%;
     }
@@ -37,7 +40,10 @@
     }
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width:800px) {
+    .col-l-0{
+        display: none;
+    }
     .col-l-1 {
         width: 14%;
     }
@@ -74,20 +80,24 @@
     margin:0;
     padding:0;
     box-sizing: border-box;    
+
 }
 
 #cabecera{
     position: relative;
-    height: 260px;
     z-index: -1;
-
+    max-height: 240px;
+    min-height: 100px;
+    display: block;
+    vertical-align: top;
+    border: 6px groove rgba(84,86,94,0.51);
+    border-radius: 13px;
 }
 .logo{
-    
+    display: block;
     position: absolute;
     vertical-align: top;
     z-index: 1;
-    
 }
 
 .logo:hover{
@@ -96,28 +106,18 @@
 }
 .a_logo{
     position: absolute;
+    display: block;
     z-index: 1;
-    top: 200px;
     color: #fff;
     font-size: 30px;
 }
-#cabecera{
-    position: relative;
-    max-height: 300px;
-    display: block;
-    border-style: solid;
-}
+
 header {
-    padding: 20px;
-   
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-flow: row;
-    flex-wrap: wrap;
+    display: block;
+    vertical-align: bottom;
 }
 .contenedor{
-   
+
     margin: auto;
     display: flex;
     flex-direction: row;
@@ -130,38 +130,81 @@ h1 {
     position:relative;
 }
 body{
-    background-color: gray;
+    background: rgba(112,112,112,1);
+    background: -moz-linear-gradient(top, rgba(112,112,112,1) 0%, rgba(107,107,107,1) 20%, rgba(47,55,92,1) 65%, rgba(26,37,86,1) 81%, rgba(125,125,125,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(112,112,112,1)), color-stop(20%, rgba(107,107,107,1)), color-stop(65%, rgba(47,55,92,1)), color-stop(81%, rgba(26,37,86,1)), color-stop(100%, rgba(125,125,125,1)));
+    background: -webkit-linear-gradient(top, rgba(112,112,112,1) 0%, rgba(107,107,107,1) 20%, rgba(47,55,92,1) 65%, rgba(26,37,86,1) 81%, rgba(125,125,125,1) 100%);
+    background: -o-linear-gradient(top, rgba(112,112,112,1) 0%, rgba(107,107,107,1) 20%, rgba(47,55,92,1) 65%, rgba(26,37,86,1) 81%, rgba(125,125,125,1) 100%);
+    background: -ms-linear-gradient(top, rgba(112,112,112,1) 0%, rgba(107,107,107,1) 20%, rgba(47,55,92,1) 65%, rgba(26,37,86,1) 81%, rgba(125,125,125,1) 100%);
+    background: linear-gradient(to bottom, rgba(112,112,112,1) 0%, rgba(107,107,107,1) 20%, rgba(47,55,92,1) 65%, rgba(26,37,86,1) 81%, rgba(125,125,125,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#707070', endColorstr='#7d7d7d', GradientType=0 );
 }
 legend{
-    text-height: 5px;
-    text-shadow: 5px 5px 8px black;
+    text-height: 15px;
+    text-shadow: 10px 5px 8px black ;
     color: white;
     text-align: center;
 
 }
-
+form{
+    text-align: center;
+}
 form input [type="submit"] {
 
-    padding: 6px;
     color: #ffffff;
     background-color: #990000;
     border: 1px solid #000000;
-    margin: 4px;
 }
 
-
+label{
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 25px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: #FFFFFF;
+    font-weight: 700;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: uppercase;
+    text-shadow: 3px 5px 2px #474747, 2px 2px 7px rgba(70,72,83,0.61);
+}
+.form_bot{
+   background-image: url(../Img/fondo.jpg);
+   background-size: 100%;
+    border: 0;
+    padding: 0;
+}
 section {
-    height: 50%;
-    border: 3px solid blue;
-    margin: auto;
-    padding-bottom: 5px;
+    background-image: url(../Img/fondo.jpg);
+    background-size: 100%;
+    background-repeat:  no-repeat;
+    border: 10px outset rgba(28,110,164,0.49);
+    border-radius: 10px;
     text-align: center;
 }
 aside {
+    border: 3px solid blue;
     background-color: lightslategray;
     text-align: center;
 }
-
+.chat{
+    overflow: scroll;
+}
+.td_u1{
+    font-size: 14px;
+    text-align: center;
+    border: 5px outset #E3EA13;
+    border-radius: 9px;
+    margin: 3px;
+}
+.td_u2{
+    font-size: 14px;
+    border: 5px outset #134B70;
+    border-radius: 9px;
+    text-align: center;
+    margin: 3px;
+}
 footer {
     padding: 15px;
     min-height: 50px;
@@ -169,20 +212,45 @@ footer {
     text-align: center;
 }
 .campo{
-    max-width:40%;
-    border: 50px;
-    border: 1px solid #cccccc;
+    border: 4px groove rgba(26,102,150,0.71);
+    border-radius: 9px;
+    margin: auto 0;
+
+}
+.boton_olvidar{
+    font-size:13px;
+    font-family:Verdana,Helvetica;
+    font-weight:bold;
+    text-align: center;
+    color:white;
+    background:#638cb5;
+    max-height: 20px;
+    min-height: 15px;
+    margin: 3px;
+    border-radius: 115px 115px 115px 115px;
+    -moz-border-radius: 114px 115px 115px 115px;
+    -webkit-border-radius: 114px 115px 115px 115px;
+    border: 3px solid #0f3140;
 
 }
 .boton{
     font-size:15px;
     font-family:Verdana,Helvetica;
     font-weight:bold;
+    text-align: center;
     color:white;
     background:#638cb5;
-    border:2px;
-    width:150px;
-    height:20px;
+    max-height: 25px;
+    min-height: 15px;
+    margin: 3px;
+    border-radius: 115px 115px 115px 115px;
+    -moz-border-radius: 114px 115px 115px 115px;
+    -webkit-border-radius: 114px 115px 115px 115px;
+    border: 3px solid #0f3140;
+}
+.boton:hover{
+    box-shadow: 3px 0px 20px buttonhighlight;
+
 }
 .tarjeta {
     border-style: solid;
@@ -192,4 +260,30 @@ footer {
     background-color: lightsteelblue;
     color: darkblue;
     text-align: justify;
+}
+
+/* Este es el diseño para nuestros mensajes de error */
+.error {
+    width : 100%;
+    padding: 0;
+    font-size: 40%;
+    color: white;
+    background-color: #900;
+    border-radius: 0 0 5px 5px;
+    box-sizing: border-box;
+}
+
+.error.active {
+    padding: 1px;
+}
+
+.no-error {
+    width: 100%;
+    padding: 0;
+    font-size: 80%;
+    color: white;
+    background-color: #090;
+    border-radius: 0 0 5px 5px;
+    box-sizing: border-box;
+    padding: 0.2rem;
 }

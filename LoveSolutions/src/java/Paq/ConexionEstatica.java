@@ -4,6 +4,7 @@ import Auxiliar.Constantes;
 import static Auxiliar.Constantes.rol;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 /**
@@ -68,14 +69,16 @@ public class ConexionEstatica {
 
         return EstaHabilitado;
     }
-    public static Usuario obtenerUsuario(String DNI){
-    Usuario u2 = null;
+
+    public static Usuario obtenerUsuario(String DNI) {
+        Usuario u2 = null;
+        System.out.println("entramos en obtener");
         try {
             String sentencia = "SELECT * FROM " + Constantes.usuarios + " WHERE DNI = '" + DNI + "'";
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
             if (ConexionEstatica.Conj_Registros.next()) //Si devuelve true es que existe.
             {
-               
+
                 String email = Conj_Registros.getString("Email");
                 String nick = Conj_Registros.getString("nick");
                 String sexo = Conj_Registros.getString("Sexo");
@@ -83,21 +86,54 @@ public class ConexionEstatica {
                 u2 = new Usuario(DNI, nick, email, sexo, fechaNacimiento);
 
             }
+            System.out.println(u2);
         } catch (SQLException ex) {
-            System.out.println("Error en el login a la BD.");
+            System.out.println("Error en la obtencin de usuario de la BD.");
         }
         return u2;
     }
+
+    public static LinkedList obtenerMensajes(String dni1, String dni2) {
+        LinkedList<Mensaje> Mensajes = new LinkedList<Mensaje>();
+        Mensaje m;
+        try {
+            String sentencia = "SELECT * FROM " + Constantes.mensajes + " WHERE ( Emisor='" + dni1 + "' AND Receptor='" + dni2 + "') OR ( Emisor='" + dni2 + "' AND Receptor='" + dni1 + "')";
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while (ConexionEstatica.Conj_Registros.next()) //Si devuelve true es que existe.
+            {
+                int id = Conj_Registros.getInt("ID");
+                String Emisor = Conj_Registros.getString("Emisor");
+                String Receptor = Conj_Registros.getString("Receptor");
+                String Mensaje = Conj_Registros.getString("Mensaje");
+                m = new Mensaje(id,Emisor, Receptor, Mensaje);
+                Mensajes.add(m);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error en la obtencion de mensajes en la BD.");
+        }
+        return Mensajes;
+    }
+
+    public static void leerMensaje(int id,String DNI) {
+        try {
+            String Sentencia = "UPDATE " + Constantes.mensajes + " SET Leido = '1' WHERE ID = '" + id + "' AND Receptor='"+DNI+"'";
+            ConexionEstatica.Sentencia_SQL.executeUpdate(Sentencia);
+        } catch (SQLException ex) {
+            System.out.println("Error en el marcado de leido en  BD.");
+        }
+
+    }
+
     public static boolean insertarMensaje(Mensaje m) {
         boolean estaEnviado = false;
         try {
             String sentencia = "INSERT INTO " + Constantes.mensajes + " (`Emisor`, `Receptor`, `Mensaje`) VALUES ('" + m.getEmisor() + "','" + m.getReceptor() + "','" + m.getMensaje() + "')";
             ConexionEstatica.Sentencia_SQL.executeUpdate(sentencia);
-                estaEnviado = true;
-         
+            estaEnviado = true;
+
         } catch (SQLException ex) {
             System.out.println("Error de insercion de mensaje en la BD.");
-           
+
         }
         return estaEnviado;
     }

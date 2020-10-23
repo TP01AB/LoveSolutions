@@ -13,6 +13,7 @@ import java.util.LinkedList;
  * @author isra9
  */
 public class Usuario {
+
     String DNI;
     String nick;
     String email;
@@ -21,11 +22,15 @@ public class Usuario {
     int rol;
     LinkedList pref;
 //CONSTRUCTOR REGISTRO
+
     public Usuario(String DNI, String nick, String email, String sexo) {
         this.DNI = DNI;
         this.nick = nick;
         this.email = email;
         this.sexo = sexo;
+    }
+
+    public Usuario() {
     }
 //CONSTRUCTOR LOGIN
 
@@ -36,7 +41,6 @@ public class Usuario {
         this.sexo = sexo;
         this.fecha_nacimiento = fecha_nacimiento;
     }
-    
 
     public int getRol() {
         return rol;
@@ -61,10 +65,6 @@ public class Usuario {
     public void setPref(LinkedList pref) {
         this.pref = pref;
     }
-
-   
-
-  
 
     public String getDNI() {
         return DNI;

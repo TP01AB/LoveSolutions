@@ -16,13 +16,16 @@
         <link rel="stylesheet" type="text/css" href="Estilos/Estilo1.css">
     </head>
     <body >
-        <header class="row col-l-8 col-m-8">
-            <a href="index.jsp">
-                <img id="logo" class="col-l-1 col-m-1" src="Img/Logo.png" href="Vistas/Registro.jsp" alt="Love Solutions">
+        <div class="contenedor">
+            <header class="row col-l-8 col-m-8 " >
+
+                <img  class="col-l-1 col-m-1 logo" src="Img/Logo.png"  alt="Love Solutions">
                 <img id="cabecera" class="col-l-8 col-m-8" src="Img/Cabecera.jpg">
-                <h1>Love Solutions</h1>
-            </a>
-        </header>
+
+                <a href="index.jsp" class="a_logo">Love Solutions</a>
+
+            </header>
+        </div>
         <main class="row col-l-8 col-m-8">
 
             <aside class="col-m-2 col-l-2">
@@ -44,14 +47,14 @@
 
                     <label class="col-l-8 col-m-8" for="Password">Contraseña</label>
                     <input  class="col-l-8 col-m-8 campo" name="Password"  type="password" >
-                    
+
                     <div class="col-l-8 col-m-8">
-                    <input  class="boton" name="Login" type="submit" value="Login">
+                        <input  class="boton" name="Login" type="submit" value="Login">
                     </div>
-                    
+
                     <div class="col-l-8 col-m-8">
-                    <input   class="boton left" id="Registrarse" name="Registrarse" type="submit" value="Registrarse">
-                    <input  class="boton rigth" id="Olvidado" name="Olvidado" type="submit" value="Olvide la Contraseña">
+                        <input   class="boton left" id="Registrarse" name="Registrarse" type="submit" value="Registrarse">
+                        <input  class="boton rigth" id="Olvidado" name="Olvidado" type="submit" value="Olvide la Contraseña">
                     </div>
                 </form>
             </section>
@@ -60,7 +63,7 @@
 
         </main>
         <footer class="row col-l-8 col-m-8">
-            Israel molina pulpon
+            <a href="Vistas/Chat.jsp" > Israel molina pulpon</a>
         </footer>
     </body>
 

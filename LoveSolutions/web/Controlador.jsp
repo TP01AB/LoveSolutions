@@ -3,6 +3,8 @@
     Created on : 14-oct-2020, 12:46:10
     Author     : isra9
 --%>
+<%@page import="Paq.Mensaje"%>
+<%@page import="java.util.LinkedList"%>
 <%@page import="Paq.Usuario"%>
 <%@page import="java.math.BigInteger"%>
 <%@page import="java.security.MessageDigest"%>
@@ -11,6 +13,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+    Usuario u1 = new Usuario();
+    Usuario u2 = new Usuario();
+    Mensaje m = new Mensaje();
+    LinkedList mensajes = new LinkedList();
 //---------------ABRIMOS CONEXION
 
     //-------------------------LOGIN------------------
@@ -32,9 +38,8 @@
             throw new RuntimeException(e);
 
         }
-        Usuario u1;
-        u1 = ConexionEstatica.Login(mail, pass);
 
+        u1 = ConexionEstatica.Login(mail, pass);
         if (ConexionEstatica.UsuarioHabilitado(u1.getDNI())) {
             u1.setRol(ConexionEstatica.ObtenerRol(u1.getDNI()));
             if (u1.getRol() == 3) {
@@ -79,10 +84,10 @@
                 System.out.println("error al encriptar contraseña.");
             }
             System.out.println("contraseña de REGISTRO " + encString);
-            Usuario u = new Usuario(request.getParameter("DNIRegistro"), request.getParameter("NickRegistro"), request.getParameter("EmailRegistro"), request.getParameter("SexoRegistro"));
+            u1 = new Usuario(request.getParameter("DNIRegistro"), request.getParameter("NickRegistro"), request.getParameter("EmailRegistro"), request.getParameter("SexoRegistro"));
             System.out.println("Aqui el cifrado pass : " + encString);
-            System.out.println(u);
-            ConexionEstatica.CrearUsuario(u, encString);
+            System.out.println(u1);
+            ConexionEstatica.CrearUsuario(u1, encString);
 
             response.sendRedirect("./index.jsp");
 
@@ -93,11 +98,33 @@
     //---------------------REDIRECCION A REGISTRO
     if (request.getParameter("Registrarse") != null) {
         response.sendRedirect("Vistas/Registro.jsp");
+
     }
 
 //-------------------------OLVIDADO------------------
     if (request.getParameter("Olvidado") != null) {
         response.sendRedirect("Vistas/Olvidado.jsp");
+    }
+// -------------MENSAJES------------------------------
+
+    if (request.getParameter("enviarMensaje") != null) {
+        ConexionEstatica.nueva();
+        u2 = ConexionEstatica.obtenerUsuario("06280822E");
+        m = new Mensaje(u1.getDNI(), u2.getDNI(), request.getParameter("mensajeNuevo"));
+        if (ConexionEstatica.insertarMensaje(m)) {
+            mensajes.add(m);
+        }
+
+        ConexionEstatica.cerrarBD();
+        response.sendRedirect("./index.jsp");
+
+    }
+//----------------------------CHAT---------------------
+    if (request.getParameter("iniciarChat") != null) {
+        ConexionEstatica.nueva();
+
+        ConexionEstatica.cerrarBD();
+        response.sendRedirect("./Chat.jsp");
     }
 
 %>

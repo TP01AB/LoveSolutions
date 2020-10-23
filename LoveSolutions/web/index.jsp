@@ -15,10 +15,12 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="Estilos/Estilo1.css">
     </head>
+    
+
     <body >
         <jsp:include page="Vistas/Cabecera.jsp"/>
-  
-    </div>
+
+   
     <main class="row col-l-8 col-m-8">
 
         <aside class="col-m-2 col-l-2">
@@ -42,14 +44,22 @@
                 <label class="col-l-8 col-m-8" for="Password">Contraseña</label>
                 <div class="col-l-2 col-m-1"> </div>
                 <input  class="col-l-4 col-m-6 campo" name="Password"  type="password" >
-                <div class="col-l-2 col-m-1"> </div>
+                <div class="col-l-3 col-m-2"> </div>
 
-                <input  class="boton col-l-3 col-m-2" name="Login" type="submit" value="Login">
-
+                <input   class="boton col-l-2 col-m-1"  name="Login" type="submit" value="Login">
+                
+                <%
+                    int n = ((int) (Math.random() * 10)) + 1;
+                    if (n < 5 || session.getAttribute("true") != null) {
+                        session.setAttribute("true", true);
+                        out.println("<div name='captcha' clas='g-recaptcha' data-sitekey='6LdGPtoZAAAAAPhXK24N-3XER82ZthFNqSclTLlw'></div>");
+                    }
+                %>
                 <div class=" col-l-8 col-m-8">
+                    <div class="col-l-3 col-m-1"></div>
                     <input   class="boton col-l-2 col-m-1" id="Registrarse" name="Registrarse" type="submit" value="Registrarse">
-                    <div class="col-l-4 col-m-6"></div>
-                    <input  class="boton col-l-2 col-m-1" id="Olvidado" name="Olvidado" type="submit" value="Olvide la Contraseña">
+                    <div class="col-l-3 col-m-1"></div>
+                    <input   class="boton_olvidar col-l-3 col-m-2"  id="Olvidado" name="Olvidado" type="submit" value="Olvide la Contraseña">
                 </div>
             </form>
         </section>

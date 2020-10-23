@@ -24,6 +24,8 @@
         ConexionEstatica.nueva();
         String mail = request.getParameter("User");
         String pass = request.getParameter("Password");
+        session.setAttribute("email", mail);
+
         try {// ENCRIPTACION POR MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] encBytes = md.digest(pass.getBytes());
@@ -38,7 +40,14 @@
             throw new RuntimeException(e);
 
         }
+        //Captcha
+        boolean valid = true;
+        if (session.getAttribute("true") != null) {
+            String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+            System.out.println(gRecaptchaResponse);
 
+            //  valid = Captcha.verificar(gRecaptchaResponse);
+        }
         u1 = ConexionEstatica.Login(mail, pass);
         if (ConexionEstatica.UsuarioHabilitado(u1.getDNI())) {
             u1.setRol(ConexionEstatica.ObtenerRol(u1.getDNI()));

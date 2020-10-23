@@ -13,8 +13,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    Usuario u1 = new Usuario();
-    Usuario u2 = new Usuario();
+    Usuario u1 = null;
+    Usuario u2 = null;
     Mensaje m = new Mensaje();
     LinkedList mensajes = new LinkedList();
 //---------------ABRIMOS CONEXION
@@ -24,7 +24,7 @@
         ConexionEstatica.nueva();
         String mail = request.getParameter("User");
         String pass = request.getParameter("Password");
-        session.setAttribute("email", mail);
+        
 
         try {// ENCRIPTACION POR MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -49,19 +49,23 @@
             //  valid = Captcha.verificar(gRecaptchaResponse);
         }
         u1 = ConexionEstatica.Login(mail, pass);
-        if (ConexionEstatica.UsuarioHabilitado(u1.getDNI())) {
-            u1.setRol(ConexionEstatica.ObtenerRol(u1.getDNI()));
-            if (u1.getRol() == 3) {
-                response.sendRedirect("Vistas/Admin.jsp");
-            } else if (u1.getRol() == 0) {
-                response.sendRedirect("Vistas/Inicio.jsp");
+        if (u1 != null) {
+            if (ConexionEstatica.UsuarioHabilitado(u1.getDNI())) {
+                u1.setRol(ConexionEstatica.ObtenerRol(u1.getDNI()));
+                if (u1.getRol() == 3) {
+                    response.sendRedirect("Vistas/Admin.jsp");
+                } else if (u1.getRol() == 0) {
+                    response.sendRedirect("Vistas/Inicio.jsp");
+                }
+            } else {
+                // Sacar mensaje de error y poner opcion de contactar con admin
+                response.sendRedirect("Vistas/Ticket.jsp");
             }
-        } else {
-            // Sacar mensaje de error y poner opcion de contactar con admin
-            response.sendRedirect("Vistas/Ticket.jsp");
+            session.setAttribute("u1", u1);
+            ConexionEstatica.cerrarBD();
         }
-        session.setAttribute("u1", u1);
-        ConexionEstatica.cerrarBD();
+    } else {
+        response.sendRedirect("index.jsp");
     }
 
     //---------------------------REGISTRO-----------------------------

@@ -45,7 +45,14 @@
                 <div class="col-l-2 col-m-2"> </div>
                 <input  class="col-l-4 col-m-4 campo" name="Password"  type="password" >
                 <div class="col-l-3 col-m-3"> </div>
-
+                <%
+                    
+                if(request.getParameter("User")!=null){
+                %>
+                <p id="error_login"></p>
+                <%
+                }
+                %>
                 <input   class="boton col-l-2 col-m-2"  name="Login" type="submit" value="Login">
                 
                 <%

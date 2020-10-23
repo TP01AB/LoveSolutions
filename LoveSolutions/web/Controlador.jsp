@@ -13,8 +13,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    Usuario u1 = new Usuario();
-    Usuario u2 = new Usuario();
+    Usuario u1 = null;
+    Usuario u2 = null;
     Mensaje m = new Mensaje();
     LinkedList mensajes = new LinkedList();
 //---------------ABRIMOS CONEXION
@@ -24,6 +24,8 @@
         ConexionEstatica.nueva();
         String mail = request.getParameter("User");
         String pass = request.getParameter("Password");
+        
+
         try {// ENCRIPTACION POR MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] encBytes = md.digest(pass.getBytes());
@@ -38,21 +40,32 @@
             throw new RuntimeException(e);
 
         }
+        //Captcha
+        boolean valid = true;
+        if (session.getAttribute("true") != null) {
+            String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+            System.out.println(gRecaptchaResponse);
 
-        u1 = ConexionEstatica.Login(mail, pass);
-        if (ConexionEstatica.UsuarioHabilitado(u1.getDNI())) {
-            u1.setRol(ConexionEstatica.ObtenerRol(u1.getDNI()));
-            if (u1.getRol() == 3) {
-                response.sendRedirect("Vistas/Admin.jsp");
-            } else if (u1.getRol() == 0) {
-                response.sendRedirect("Vistas/Inicio.jsp");
-            }
-        } else {
-            // Sacar mensaje de error y poner opcion de contactar con admin
-            response.sendRedirect("Vistas/Ticket.jsp");
+            //  valid = Captcha.verificar(gRecaptchaResponse);
         }
-
-        ConexionEstatica.cerrarBD();
+        u1 = ConexionEstatica.Login(mail, pass);
+        if (u1 != null) {
+            if (ConexionEstatica.UsuarioHabilitado(u1.getDNI())) {
+                u1.setRol(ConexionEstatica.ObtenerRol(u1.getDNI()));
+                if (u1.getRol() == 3) {
+                    response.sendRedirect("Vistas/Admin.jsp");
+                } else if (u1.getRol() == 0) {
+                    response.sendRedirect("Vistas/Inicio.jsp");
+                }
+            } else {
+                // Sacar mensaje de error y poner opcion de contactar con admin
+                response.sendRedirect("Vistas/Ticket.jsp");
+            }
+            session.setAttribute("u1", u1);
+            ConexionEstatica.cerrarBD();
+        }
+    } else {
+        response.sendRedirect("index.jsp");
     }
 
     //---------------------------REGISTRO-----------------------------
@@ -109,22 +122,38 @@
 
     if (request.getParameter("enviarMensaje") != null) {
         ConexionEstatica.nueva();
-        u2 = ConexionEstatica.obtenerUsuario("06280822E");
+        u2 = (Usuario) session.getAttribute("u2");
+        u1 = (Usuario) session.getAttribute("u1");
         m = new Mensaje(u1.getDNI(), u2.getDNI(), request.getParameter("mensajeNuevo"));
         if (ConexionEstatica.insertarMensaje(m)) {
             mensajes.add(m);
         }
 
         ConexionEstatica.cerrarBD();
-        response.sendRedirect("./index.jsp");
+        response.sendRedirect("./Chat.jsp");
 
     }
 //----------------------------CHAT---------------------
     if (request.getParameter("iniciarChat") != null) {
         ConexionEstatica.nueva();
+        u1 = (Usuario) session.getAttribute("u1");
+        String dni1 = u1.getDNI();
 
+        if (dni1 != "06280822E") {
+            u2 = ConexionEstatica.obtenerUsuario("06280822E");
+        } else {
+            u2 = ConexionEstatica.obtenerUsuario("06280822M");
+        }
+        System.out.println(u1);
+        session.setAttribute("u2", u2);
+        LinkedList l = ConexionEstatica.obtenerMensajes(u1.getDNI(), u2.getDNI());
+        for (int i = 0; i < l.size(); i++) {
+            Mensaje m2 = (Mensaje) l.get(i);
+            ConexionEstatica.leerMensaje(m2.getId(), dni1);
+        }
+        session.setAttribute("Mensajes", l);
         ConexionEstatica.cerrarBD();
-        response.sendRedirect("./Chat.jsp");
+        response.sendRedirect("./Vistas/Chat.jsp");
     }
 
 %>

@@ -13,6 +13,7 @@
         <title>Love Solutions</title>
     </head>
     <body>
+       <jsp:include page="./Cabecera.jsp"/>
         <h1>Hello Olvidado!</h1>
          <form name="form" action="../Controlador.jsp" method="POST">
             <button type="submit" name="Return" class="btn btn-dark w-100">Volver</button>

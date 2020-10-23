@@ -6,12 +6,31 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+    String ruta = "";
+    if (!getServletConfig().getServletContext().getRealPath(request.getServletPath()).endsWith("index.jsp")) {
+        ruta = "../";
+    }
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="<%out.print(ruta);%>Estilos/Estilo1.css">
         <title>JSP Page</title>
     </head>
-    <body>
-        <h1>Hello World!</h1>
+    <body >
+
+        <div class="contenedor">
+            <header class="row col-l-8 col-m-8 " >
+
+
+                <a  href="<%out.print(ruta);%>index.jsp"  >
+                    <img  class="col-l-1 col-m-1 logo" src="<%out.print(ruta);%>Img/Logo.png"  alt="Love Solutions">
+                    <img id="cabecera"  class="col-l-8 col-m-8" src="<%out.print(ruta);%>Img/Cabecera.jpg" >
+
+                </a>
+
+            </header>
+        </div>
     </body>
 </html>

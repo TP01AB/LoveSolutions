@@ -20,14 +20,21 @@ public class Mensaje {
     public Mensaje() {
     }
 
-    public Mensaje(String emisor, String receptor, String mensaje) {
+    public Mensaje(int id, String emisor, String receptor, String mensaje) {
+        this.id = id;
         this.emisor = emisor;
         this.receptor = receptor;
         this.mensaje = mensaje;
     }
-    
-    
-        //CONSTRUCTOR PARA CREACION DE MENSAJES EXISTENTES EN BD
+
+    public Mensaje(String emisor, String receptor, String mensaje) {
+
+        this.emisor = emisor;
+        this.receptor = receptor;
+        this.mensaje = mensaje;
+    }
+
+    //CONSTRUCTOR PARA CREACION DE MENSAJES EXISTENTES EN BD
     public Mensaje(String emisor, String receptor, String mensaje, int id, boolean Leido) {
         this.emisor = emisor;
         this.receptor = receptor;
@@ -74,5 +81,10 @@ public class Mensaje {
 
     public void setLeido(boolean Leido) {
         this.Leido = Leido;
+    }
+
+    @Override
+    public String toString() {
+        return "Mensaje de " + emisor + ": " + mensaje;
     }
 }

@@ -126,14 +126,14 @@
         }
 
         ConexionEstatica.cerrarBD();
-        response.sendRedirect("./Vistas/Chat.jsp");
+        response.sendRedirect("./Chat.jsp");
 
     }
 //----------------------------CHAT---------------------
     if (request.getParameter("iniciarChat") != null) {
         ConexionEstatica.nueva();
         u1 = (Usuario) session.getAttribute("u1");
-       String dni1=u1.getDNI();
+        String dni1 = u1.getDNI();
 
         if (dni1 != "06280822E") {
             u2 = ConexionEstatica.obtenerUsuario("06280822E");
@@ -142,7 +142,11 @@
         }
         System.out.println(u1);
         session.setAttribute("u2", u2);
-        LinkedList l=ConexionEstatica.obtenerMensajes(u1.getDNI(), u2.getDNI());
+        LinkedList l = ConexionEstatica.obtenerMensajes(u1.getDNI(), u2.getDNI());
+        for (int i = 0; i < l.size(); i++) {
+            Mensaje m2 = (Mensaje) l.get(i);
+            ConexionEstatica.leerMensaje(m2.getId(), dni1);
+        }
         session.setAttribute("Mensajes", l);
         ConexionEstatica.cerrarBD();
         response.sendRedirect("./Vistas/Chat.jsp");

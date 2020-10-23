@@ -179,13 +179,22 @@ aside {
     background-color: lightslategray;
     text-align: center;
 }
+.chat{
+    overflow: scroll;
+}
 .td_u1{
-    text-align: right;
-    
+    font-size: 14px;
+    text-align: center;
+    border: 5px outset #E3EA13;
+    border-radius: 9px;
+    margin: 3px;
 }
 .td_u2{
-    text-align: left;
-    
+    font-size: 14px;
+    border: 5px outset #134B70;
+    border-radius: 9px;
+    text-align: center;
+    margin: 3px;
 }
 footer {
     padding: 15px;
@@ -213,7 +222,7 @@ footer {
     -moz-border-radius: 114px 115px 115px 115px;
     -webkit-border-radius: 114px 115px 115px 115px;
     border: 3px solid #0f3140;
-    
+
 }
 .boton{
     font-size:15px;

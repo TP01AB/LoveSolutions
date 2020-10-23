@@ -97,17 +97,31 @@ public class ConexionEstatica {
         LinkedList<Mensaje> Mensajes = new LinkedList<Mensaje>();
         Mensaje m;
         try {
-            String sentencia = "SELECT * FROM " + Constantes.mensajes + " WHERE (Emisor='" + dni1 + "' AND Receptor='" + dni2 + "') OR (Emisor='" + dni2 + "'Receptor='" + dni1 + "')";
+            String sentencia = "SELECT * FROM " + Constantes.mensajes + " WHERE ( Emisor='" + dni1 + "' AND Receptor='" + dni2 + "') OR ( Emisor='" + dni2 + "' AND Receptor='" + dni1 + "')";
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
             while (ConexionEstatica.Conj_Registros.next()) //Si devuelve true es que existe.
             {
-                m = new Mensaje();
-
+                int id = Conj_Registros.getInt("ID");
+                String Emisor = Conj_Registros.getString("Emisor");
+                String Receptor = Conj_Registros.getString("Receptor");
+                String Mensaje = Conj_Registros.getString("Mensaje");
+                m = new Mensaje(id,Emisor, Receptor, Mensaje);
+                Mensajes.add(m);
             }
         } catch (SQLException ex) {
             System.out.println("Error en la obtencion de mensajes en la BD.");
         }
         return Mensajes;
+    }
+
+    public static void leerMensaje(int id,String DNI) {
+        try {
+            String Sentencia = "UPDATE " + Constantes.mensajes + " SET Leido = '1' WHERE ID = '" + id + "' AND Receptor='"+DNI+"'";
+            ConexionEstatica.Sentencia_SQL.executeUpdate(Sentencia);
+        } catch (SQLException ex) {
+            System.out.println("Error en el marcado de leido en  BD.");
+        }
+
     }
 
     public static boolean insertarMensaje(Mensaje m) {

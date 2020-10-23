@@ -23,8 +23,10 @@
         <div class="contenedor">
             <header class="row col-l-8 col-m-8 " >
 
-                <img  class="col-l-1 col-m-1 logo" src="<%out.print(ruta);%>Img/Logo.png"  alt="Love Solutions">
-                <a  class=""><img id="cabecera"  class="col-l-8 col-m-8" src="<%out.print(ruta);%>Img/Cabecera.jpg" >
+
+                <a  href="<%out.print(ruta);%>index.jsp"  >
+                    <img  class="col-l-1 col-m-1 logo" src="<%out.print(ruta);%>Img/Logo.png"  alt="Love Solutions">
+                    <img id="cabecera"  class="col-l-8 col-m-8" src="<%out.print(ruta);%>Img/Cabecera.jpg" >
 
                 </a>
 

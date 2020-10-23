@@ -16,8 +16,10 @@
         <jsp:include page="./Cabecera.jsp"/>
         <h1>Hello ADMIN!</h1>
         <form name="form" action="../Controlador.jsp" method="POST">
-            <input type="submit" name="iniciarChat" id="iniciarChat" value="CHAT">
-            <button type="submit" name="Return" class="">Volver</button>
+            <input class="boton" type="submit" name="inicio" id="inicio" value="Inicio como usuario">
+            <input class="boton" type="submit" name="iniciarChat" id="iniciarChat" value="CHAT">
+            
+            <button class="boton" type="submit" name="Return">Volver</button>
         </form>
     </body>
 </html>

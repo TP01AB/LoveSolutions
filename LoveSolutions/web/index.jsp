@@ -33,7 +33,7 @@
 
 
 
-        <section class=" col-l-4 col-m-4">
+        <section class=" col-l-4 col-m-4" >
             <form class="row " action="Controlador.jsp" method="POST">
                 <legend class="col-l-8 col-m-8" name="FormCabecera">Inicio de Sesion</legend>
                 <hr>
@@ -55,7 +55,7 @@
                         out.println("<div name='captcha' clas='g-recaptcha' data-sitekey='6LdGPtoZAAAAAPhXK24N-3XER82ZthFNqSclTLlw'></div>");
                     }
                 %>
-                <div class=" col-l-8 col-m-8">
+                <div class="form_bot col-l-8 col-m-8">
                     <div class="col-l-3 col-m-3"></div>
                     <input   class="boton col-l-2 col-m-3" id="Registrarse" name="Registrarse" type="submit" value="Registrarse">
                     <div class="col-l-3 col-m-3"></div>
